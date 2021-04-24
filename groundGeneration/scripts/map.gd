@@ -19,28 +19,33 @@ func _ready():
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
-		# generate map here
-	var width = 0
-	var height = 0
-	var currentDepth = firstLine
+	# generate map here
+
+	# base fill
+	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.TileTypes.Dirt)
 	
+	# resources fill
+	addTileType(firstLine, lastLine, Global.TileTypes.Ice)
+	addTileType(firstLine, lastLine, Global.TileTypes.Metal)
+	addTileType(firstLine, lastLine, Global.TileTypes.Rock)
+	addTileType(firstLine, lastLine, Global.TileTypes.Coal)
+
+
+func addTileType(firstLine, lastLine, type):
+	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
-		height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
+		var width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
+		var height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
 		var cavernStart = (randi() % (screenWidth - width - 1))
 		
-		# set tiles
-		for x in range(0, screenWidth):
-			for y in range(currentDepth, currentDepth+height):
-				if(x > cavernStart and x < cavernStart + width):
-
-					$TileMap.set_tile(x, y, Global.TileTypes.Empty)
-				else:
-					$TileMap.set_tile(x, y, Global.TileTypes.Dirt)
-		
+		# fill one area
+		setSquare(cavernStart, currentDepth, width, height, type)
 		currentDepth = currentDepth + height
 
-	$TileMap.set_tile(22, 22, Global.TileTypes.Ice)
+func setSquare(left, top, width, height, type):
+	for y in range(top, top+height):
+		for x in range(left, left + width):
+				$TileMap.set_tile(x, y, type)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

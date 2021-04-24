@@ -2,21 +2,21 @@ extends Node
 
 const TileTypes = {
 	Empty = {
-		cell_type = 2,
+		cell_type = 0,
 		durability = 0,
 		conductivity = 1,
 		temperature = 3,
 		static = false
 	},
 	Dirt = {
-		cell_type = 3,
+		cell_type = 1,
 		durability = 100,
 		conductivity = 3,
 		temperature = 3,
 		static = false
 	},
 	Rock = {
-		cell_type = 3,
+		cell_type = 2,
 		durability = 0,
 		conductivity = 3,
 		temperature = 10,
@@ -30,14 +30,14 @@ const TileTypes = {
 		static = false
 	},
 	Coal = {
-		cell_type = 3,
+		cell_type = 4,
 		durability = 500,
 		conductivity = 3,
 		temperature = 10,
 		static = false
 	},
 	Ice = {
-		cell_type = 3,
+		cell_type = 5,
 		durability = 1000,
 		conductivity = 0,
 		temperature = 0,
