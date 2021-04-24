@@ -1,6 +1,6 @@
 extends Node2D
 
-const cavernMinWidth = 3
+const cavernMinWidth = 1
 const cavernMaxWidth = 20
 const cavernMinHeight = 1
 const cavernMaxHeight = 5
@@ -15,7 +15,6 @@ func _ready():
 	$TileMap.set_tile(3, 0, Global.TileTypes.Metal)
 	$TileMap.set_tile(4, 0, Global.TileTypes.Coal)
 	$TileMap.set_tile(5, 0, Global.TileTypes.Ice)
-
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
@@ -28,19 +27,20 @@ func generateTiles(firstLine, lastLine):
 	addTileType(firstLine, lastLine, Global.TileTypes.Ice)
 	addTileType(firstLine, lastLine, Global.TileTypes.Metal)
 	addTileType(firstLine, lastLine, Global.TileTypes.Rock)
+	addTileType(firstLine, lastLine, Global.TileTypes.Empty)
 	addTileType(firstLine, lastLine, Global.TileTypes.Coal)
 
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		var width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
-		var height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
+		var width = (randi() % (type.generation_max_width - cavernMinWidth) + cavernMinWidth)
+		var height = (randi() % (type.generation_max_height - cavernMinHeight) + cavernMinHeight)
 		var cavernStart = (randi() % (screenWidth - width - 1))
 		
 		# fill one area
 		setSquare(cavernStart, currentDepth, width, height, type)
-		currentDepth = currentDepth + height
+		currentDepth = currentDepth + height + type.vertcal_distance
 
 func setSquare(left, top, width, height, type):
 	for y in range(top, top+height):
