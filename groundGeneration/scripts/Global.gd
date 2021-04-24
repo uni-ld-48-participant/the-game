@@ -6,41 +6,59 @@ const TileTypes = {
 		durability = 0,
 		conductivity = 1,
 		temperature = 3,
-		static = false
+		static = false,
+		generation_max_width = 20,
+		generation_max_height = 5,
+		vertcal_distance = 0,
 	},
 	Dirt = {
 		cell_type = 1,
 		durability = 100,
 		conductivity = 3,
 		temperature = 3,
-		static = false
+		static = false,
+		generation_max_width = 12,
+		generation_max_height = 4,
+		vertcal_distance = 0,
 	},
 	Rock = {
 		cell_type = 2,
 		durability = 0,
 		conductivity = 3,
 		temperature = 10,
-		static = false
+		static = false,
+		generation_max_width = 8,
+		generation_max_height = 4,
+		vertcal_distance = 1,
 	},
 	Metal = {
 		cell_type = 3,
 		durability = 500,
 		conductivity = 10,
 		temperature = 10,
-		static = false
+		static = false,
+		generation_max_width = 12,
+		generation_max_height = 2,
+		vertcal_distance = 5,
 	},
 	Coal = {
 		cell_type = 4,
 		durability = 500,
 		conductivity = 3,
 		temperature = 10,
-		static = false
+		static = false,
+		generation_max_width = 3,
+		generation_max_height = 4,
+		vertcal_distance = 2,
 	},
 	Ice = {
 		cell_type = 5,
 		durability = 1000,
 		conductivity = 0,
 		temperature = 0,
-		static = true
+		static = true,
+		generation_max_width = 9,
+		generation_max_height = 4,
+		vertcal_distance = 6,
 	}
 }
