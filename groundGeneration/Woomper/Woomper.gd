@@ -8,10 +8,10 @@ export (String) var nick = "Woomper"
 
 var idleStep = 0
 var stepDelta = 0
-var check_Delta = 0
+var consume_delta = 0
 
 var campFireArea: Area2D = null
-var mushroomArea: Area2D = null
+var mushroomArea: RigidBody2D = null
 
 
 var velocity = Vector2.ZERO
@@ -37,7 +37,9 @@ func _physics_process(delta):
 		else:
 			idleStep = steps/2
 	stepDelta += delta
-	check_Delta += delta
+	
+	consume_mushroom(delta)
+	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 			
@@ -48,15 +50,32 @@ func _physics_process(delta):
 			#print("I collided with ", tile_id)
 
 func idle_moving_x(delta):
-	if (idleStep > steps/2 - 1 && campFireArea == null) || (campFireArea != null && position.x < campFireArea.position.x):
+	var goal_position = -1
+	if mushroomArea != null && mushroomArea.position.x > 0:
+		goal_position = mushroomArea.position.x
+	elif campFireArea != null && campFireArea.position.x > 0:
+		goal_position = campFireArea.position.x
+	
+	if (idleStep > steps/2 - 1 && goal_position == -1) || (position.x < goal_position):
 		idleStep = (idleStep + 1) % steps
 		return speed
 	else:
 		idleStep = (idleStep + 1) % steps
 		return -speed
 
+func consume_mushroom(delta):
+	consume_delta += delta
+	if mushroomArea != null && abs(mushroomArea.global_position.x - self.global_position.x) < 60 && consume_delta > 1 :
+		consume_delta = 0
+		mushroomArea.consume()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("campfire"):
 		print("I collided with campfire")
 		campFireArea = area as Area2D
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("mushroom"):
+		print("I collided with campfire")
+		mushroomArea = body as RigidBody2D

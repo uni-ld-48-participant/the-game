@@ -15,12 +15,13 @@ export(NodePath) var pathToPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed = get_viewport_rect().size.length() / 100.0
 	var myPlayer =  get_node(pathToPlayer) as Node2D
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	var direction = Vector2(0,0)
 	if Input.is_action_pressed("ui_left"):
 		direction.x -= 1
@@ -30,6 +31,8 @@ func _process(delta):
 		direction.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		direction.y += 1
+	if Input.is_action_pressed("test"):
+		get_parent().get_node("TileMap").set_tile(22, 22, { "type": 2, "temperature": 0 })
 	
 	direction = direction.normalized()
 	

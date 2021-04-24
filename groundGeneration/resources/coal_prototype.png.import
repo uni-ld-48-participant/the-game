@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2_tile_40x80.png-ebbd59aa847b282ddad310b87420d4f3.stex"
+path="res://.import/coal_prototype.png-84b3fac6cbe9b328fac2074823fa0745.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2_tile_40x80.png"
-dest_files=[ "res://.import/2_tile_40x80.png-ebbd59aa847b282ddad310b87420d4f3.stex" ]
+source_file="res://resources/coal_prototype.png"
+dest_files=[ "res://.import/coal_prototype.png-84b3fac6cbe9b328fac2074823fa0745.stex" ]
 
 [params]
 

@@ -3,9 +3,9 @@
 [ext_resource path="res://resources/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/coal_prototype.png" type="Texture" id=2]
 [ext_resource path="res://scripts/map.gd" type="Script" id=3]
-[ext_resource path="res://player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/TileMap.gd" type="Script" id=5]
-[ext_resource path="res://adminCamera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Woomper/Woomper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/ice_prototype.png" type="Texture" id=7]
 [ext_resource path="res://resources/rock_prototype.png" type="Texture" id=8]
 [ext_resource path="res://resources/metal_prototype.png" type="Texture" id=9]
@@ -160,10 +160,17 @@ script = ExtResource( 5 )
 cell_size = Vector2( 40, 40 )
 format = 1
 
-[node name="player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 169, 250 )
+[node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 340.563, -73.9989 )
 
-[node name="adminCamera" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1011.42, 344.991 )
-collision_layer = 0
-collision_mask = 0
+[node name="Chris" parent="." instance=ExtResource( 6 )]
+position = Vector2( 614.695, -29.4314 )
+nick = "Chris"
+
+[node name="Peter" parent="." instance=ExtResource( 6 )]
+position = Vector2( 514.629, -26.0678 )
+nick = "Peter"
+
+[node name="Meg" parent="." instance=ExtResource( 6 )]
+position = Vector2( 443.152, -26.9087 )
+nick = "Meg"
