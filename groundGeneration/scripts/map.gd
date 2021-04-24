@@ -33,6 +33,7 @@ func generateTiles(firstLine, lastLine):
 		for x in range(0, screenWidth):
 			for y in range(currentDepth, currentDepth+height):
 				if(x > cavernStart and x < cavernStart + width):
+
 					$TileMap.set_tile(x, y, Global.TileTypes.Empty)
 				else:
 					$TileMap.set_tile(x, y, Global.TileTypes.Dirt)
