@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/menu-switching.gd" type="Script" id=1]
 [ext_resource path="res://fonts/playtime.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://map.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -15,8 +16,21 @@ font_data = ExtResource( 2 )
 
 [node name="Node" type="Node"]
 
+[node name="map" parent="." instance=ExtResource( 3 )]
+pause_mode = 1
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
 script = ExtResource( 1 )
+pathToMap = NodePath("../map")
+
+[node name="background" type="PanelContainer" parent="CanvasLayer"]
+modulate = Color( 0.286275, 0.796078, 0.878431, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button-Pause" type="Button" parent="CanvasLayer"]
 anchor_left = 0.767
@@ -41,8 +55,11 @@ __meta__ = {
 }
 
 [node name="Control-About" type="Control" parent="CanvasLayer/Control-Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -0.863068
+margin_bottom = -0.863037
 __meta__ = {
 "_edit_use_anchors_": false
 }
