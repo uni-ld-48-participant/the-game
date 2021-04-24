@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/menu-switching.gd" type="Script" id=1]
-[ext_resource path="res://playtime.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/playtime.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 38
@@ -34,7 +34,6 @@ __meta__ = {
 }
 
 [node name="Control-Menu" type="Control" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -42,7 +41,6 @@ __meta__ = {
 }
 
 [node name="Control-About" type="Control" parent="CanvasLayer/Control-Menu"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -64,15 +62,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label-About" type="Label" parent="CanvasLayer/Control-Menu/Control-About"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control-Menu/Control-About"]
 anchor_left = 0.5
-anchor_top = 0.133
+anchor_top = 0.139
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -178.0
-margin_top = 0.299995
-margin_right = 179.0
-margin_bottom = 1.0
+anchor_bottom = 0.956
+margin_left = -197.0
+margin_top = -0.100014
+margin_right = 199.0
+margin_bottom = -0.400024
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-About" type="Label" parent="CanvasLayer/Control-Menu/Control-About/ScrollContainer"]
+margin_right = 296.0
+margin_bottom = 305.0
 custom_fonts/font = SubResource( 2 )
 text = "Design:
   Anna Romanko
@@ -86,6 +91,7 @@ __meta__ = {
 }
 
 [node name="Control-Main" type="Control" parent="CanvasLayer/Control-Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
