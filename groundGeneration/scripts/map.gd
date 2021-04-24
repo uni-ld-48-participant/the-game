@@ -1,20 +1,5 @@
 extends Node2D
 
-const TileType = {
-	Empty = 2,
-	Dirt = 3,
-
-	Rock = 3,
-	Metal = 3,
-	Coal = 3,
-	Ice = 3
-	
-#	Rock = 4,
-#	Metal = 5,
-#	Coal = 6,
-#	Ice = 7
-}
-
 const cavernMinWidth = 3
 const cavernMaxWidth = 20
 const cavernMinHeight = 1
@@ -24,18 +9,17 @@ const screenWidth = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TileMap.set_cell(0, 0, TileType.Empty)
-	$TileMap.set_cell(1, 0, TileType.Dirt)
-	$TileMap.set_cell(2, 0, TileType.Rock)
-	$TileMap.set_cell(3, 0, TileType.Metal)
-	$TileMap.set_cell(4, 0, TileType.Coal)
-	$TileMap.set_cell(5, 0, TileType.Ice)
+	$TileMap.set_tile(0, 0, Global.TileTypes.Empty)
+	$TileMap.set_tile(1, 0, Global.TileTypes.Dirt)
+	$TileMap.set_tile(2, 0, Global.TileTypes.Rock)
+	$TileMap.set_tile(3, 0, Global.TileTypes.Metal)
+	$TileMap.set_tile(4, 0, Global.TileTypes.Coal)
+	$TileMap.set_tile(5, 0, Global.TileTypes.Ice)
 
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
 		# generate map here
-
 	var width = 0
 	var height = 0
 	var currentDepth = firstLine
@@ -49,11 +33,13 @@ func generateTiles(firstLine, lastLine):
 		for x in range(0, screenWidth):
 			for y in range(currentDepth, currentDepth+height):
 				if(x > cavernStart and x < cavernStart + width):
-					$TileMap.set_tile(x, y, { "type": 2, "temperature": 1 })
+					$TileMap.set_tile(x, y, Global.TileTypes.Empty)
 				else:
-					$TileMap.set_tile(x, y, { "type": 3, "temperature": 1 })
+					$TileMap.set_tile(x, y, Global.TileTypes.Dirt)
 		
 		currentDepth = currentDepth + height
+
+	$TileMap.set_tile(22, 22, Global.TileTypes.Ice)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
