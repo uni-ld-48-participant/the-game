@@ -34,7 +34,7 @@ func apply_tile(tile):
 	if tile.hp <= 0:
 		tile.type = Global.TileTypes.Empty
 		
-	tile.label.text = "%d" % tile.temperature
+	tile.label.text = "%.1f" % tile.temperature
 		
 	var isFrost = tile.temperature <= 0 && tile.type != Global.TileTypes.Empty
 	$ShadeMap.set_cell(tile.x, tile.y, 0 if isFrost else 1)
