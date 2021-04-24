@@ -172,6 +172,7 @@ tile_set = SubResource( 6 )
 cell_size = Vector2( 40, 40 )
 format = 1
 script = ExtResource( 5 )
+show_temps = true
 
 [node name="ShadeMap" type="TileMap" parent="TileMap"]
 tile_set = SubResource( 7 )

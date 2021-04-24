@@ -15,6 +15,10 @@ func _ready():
 	$TileMap.set_tile(3, 0, Global.TileTypes.Metal)
 	$TileMap.set_tile(4, 0, Global.TileTypes.Coal)
 	$TileMap.set_tile(5, 0, Global.TileTypes.Ice)
+	
+	$TileMap.set_tile(10, 1, Global.TileTypes.Dirt)
+	$TileMap.set_tile(10, 2, Global.TileTypes.Ice)
+	$TileMap.set_tile(10, 3, Global.TileTypes.Dirt)
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
