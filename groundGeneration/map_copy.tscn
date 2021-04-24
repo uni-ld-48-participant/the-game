@@ -180,19 +180,19 @@ cell_size = Vector2( 40, 40 )
 format = 1
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 114.035, -42.7632 )
+position = Vector2( 424.418, 32.1568 )
 
 [node name="KinematicBody2D2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 410.705, -112.253 )
+position = Vector2( 931.578, 158.886 )
 
 [node name="KinematicBody2D3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 530.086, -49.8904 )
+position = Vector2( 823.82, 20.2728 )
 
 [node name="KinematicBody2D4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 581.758, -168.38 )
+position = Vector2( 786.302, 221.68 )
 
 [node name="KinematicBody2D5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 310.924, -155.017 )
+position = Vector2( 547.577, 82.8247 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
