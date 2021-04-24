@@ -9,7 +9,7 @@ const cavernMinWidth = 3
 const cavernMaxWidth = 20
 const cavernMinHeight = 1
 const cavernMaxHeight = 5
-const generationDepth = 1000
+const generationDepth = 100
 const screenWidth = 50
 
 # Called when the node enters the scene tree for the first time.
