@@ -1,5 +1,5 @@
 extends TileMap
-const TEMPERATURE_PROCESS_INTERVAL = 5
+const TEMPERATURE_PROCESS_INTERVAL = 2
 const TEMPERATURE_THREASHHOLD = 0.9
 const CELL_NEIGHBOR = [[-1,0],[1,0],[0,-1],[0,1]]
 	
@@ -7,6 +7,7 @@ var tile_data = {}
 
 func get_tile(x: int, y: int):
 	return tile_data[x][y] if tile_data.has(x) && tile_data[x].has(y) else null
+
 
 func set_tile(x: int, y: int, type):
 	if !tile_data.has(x):
@@ -30,8 +31,13 @@ func set_tile(x: int, y: int, type):
 	apply_tile(tile_data[x][y])	
 
 func apply_tile(tile):
+	if tile.hp <= 0:
+		tile.type = Global.TileTypes.Empty
+		
 	tile.label.text = "%d" % tile.temperature
-	$ShadeMap.set_cell(tile.x, tile.y, 0 if tile.temperature == 0 else 1)
+		
+	var isFrost = tile.temperature <= 0 && tile.type != Global.TileTypes.Empty
+	$ShadeMap.set_cell(tile.x, tile.y, 0 if isFrost else 1)
 	self.set_cell(tile.x, tile.y, tile.type.cell_type)
 
 func _process_temperature():	
@@ -51,9 +57,6 @@ func _exchange_temperature(tileA, tileB):
 		tileA.temperature == tileB.temperature):
 		return
 	var delta = (tileA.temperature - tileB.temperature) / 3.0
-	
-	if delta > 0:
-		var q = 3
 
 	if !tileA.type.static:
 		tileA.temperature -= delta
