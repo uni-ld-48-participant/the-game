@@ -31,8 +31,6 @@ func _physics_process(delta):
 		direction.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		direction.y += 1
-	if Input.is_action_pressed("test"):
-		get_parent().get_node("TileMap").set_tile(22, 22, { "type": 2, "temperature": 0 })
 	
 	direction = direction.normalized()
 	
