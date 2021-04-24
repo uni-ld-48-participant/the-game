@@ -8,6 +8,10 @@ export (String) var nick = "Woomper"
 
 var idleStep = 0
 var stepDelta = 0
+var check_Delta = 0
+
+var campFireArea: Area2D = null
+var mushroomArea: Area2D = null
 
 
 var velocity = Vector2.ZERO
@@ -33,8 +37,10 @@ func _physics_process(delta):
 		else:
 			idleStep = steps/2
 	stepDelta += delta
+	check_Delta += delta
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
+			
 		if collision.collider is TileMap:
 			var tile_pos = collision.collider.world_to_map(position)
 			tile_pos -= collision.normal
@@ -42,15 +48,15 @@ func _physics_process(delta):
 			#print("I collided with ", tile_id)
 
 func idle_moving_x(delta):
-	if idleStep > steps/2 - 1:
+	if (idleStep > steps/2 - 1 && campFireArea == null) || (campFireArea != null && position.x < campFireArea.position.x):
 		idleStep = (idleStep + 1) % steps
 		return speed
 	else:
 		idleStep = (idleStep + 1) % steps
 		return -speed
-		
-func check_fire():
-	return Vector2(-1, -1)
-	
-func check_mushroom():
-	return Vector2(-1, -1)
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("campfire"):
+		print("I collided with campfire")
+		campFireArea = area as Area2D

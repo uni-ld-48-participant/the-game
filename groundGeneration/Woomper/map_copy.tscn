@@ -106,4 +106,4 @@ position = Vector2( 667.305, 174.772 )
 nick = "Rick"
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 132.451, 143.675 )
+position = Vector2( 108.842, 79.9759 )
