@@ -1,13 +1,13 @@
 extends Node2D
 
 const TileType = {
-	Empty = 2,
-	Dirt = 3,
+	Empty = 0,
+	Dirt = 1,
 
-	Rock = 3,
+	Rock = 2,
 	Metal = 3,
-	Coal = 3,
-	Ice = 3
+	Coal = 4,
+	Ice = 5
 	
 #	Rock = 4,
 #	Metal = 5,
@@ -49,9 +49,9 @@ func generateTiles(firstLine, lastLine):
 		for x in range(0, screenWidth):
 			for y in range(currentDepth, currentDepth+height):
 				if(x > cavernStart and x < cavernStart + width):
-					$TileMap.set_tile(x, y, { "type": 2, "temperature": 1 })
+					$TileMap.set_tile(x, y, { "type": TileType.Empty, "temperature": 1 })
 				else:
-					$TileMap.set_tile(x, y, { "type": 3, "temperature": 1 })
+					$TileMap.set_tile(x, y, { "type": TileType.Dirt, "temperature": 1 })
 		
 		currentDepth = currentDepth + height
 
