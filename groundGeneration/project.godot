@@ -11,10 +11,9 @@ config_version=4
 [application]
 
 config/name="Ground Generation"
-
-run/main_scene="res://map.tscn"
-
-boot_splash/bg_color=Color( 0.227451, 0.317647, 0.529412, 1 )
+run/main_scene="res://Menu.tscn"
+boot_splash/image="res://none.png"
+boot_splash/bg_color=Color( 0.0666667, 0.176471, 0.227451, 1 )
 config/icon="res://icon.png"
 
 [autoload]
