@@ -34,7 +34,7 @@ const TileTypes = {
 		durability = 500,
 		conductivity = 3,
 		temperature = 10,
-		static = false
+		static = true
 	},
 	Ice = {
 		cell_type = 5,
