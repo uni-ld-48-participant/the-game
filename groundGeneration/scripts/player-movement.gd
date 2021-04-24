@@ -15,6 +15,7 @@ export(NodePath) var pathToPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed = get_viewport_rect().size.length() / 100.0
 	var myPlayer =  get_node(pathToPlayer) as Node2D
 	pass # Replace with function body.
 
