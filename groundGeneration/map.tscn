@@ -97,3 +97,5 @@ tile_data = PoolIntArray( -65540, 3, 0, -65539, 3, 0, -65538, 3, 0, -65537, 3, 0
 position = Vector2( 169, 250 )
 
 [node name="adminCamera" parent="." instance=ExtResource( 5 )]
+collision_layer = 0
+collision_mask = 0
