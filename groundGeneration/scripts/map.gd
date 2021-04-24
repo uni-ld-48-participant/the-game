@@ -8,11 +8,6 @@ const TileType = {
 	Metal = 3,
 	Coal = 4,
 	Ice = 5
-	
-#	Rock = 4,
-#	Metal = 5,
-#	Coal = 6,
-#	Ice = 7
 }
 
 const cavernMinWidth = 3
@@ -34,26 +29,34 @@ func _ready():
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
-		# generate map here
+	# generate map here
 
-	var width = 0
-	var height = 0
-	var currentDepth = firstLine
+	# base fill
+	setSquare(0, firstLine, screenWidth, lastLine - firstLine, { "type": TileType.Dirt, "temperature": 1 })
 	
+	# resources fill
+	addTileType(firstLine, lastLine, { "type": TileType.Ice, "temperature": 1 })
+	addTileType(firstLine, lastLine, { "type": TileType.Metal, "temperature": 1 })
+	addTileType(firstLine, lastLine, { "type": TileType.Rock, "temperature": 1 })
+	addTileType(firstLine, lastLine, { "type": TileType.Coal, "temperature": 1 })
+
+
+func addTileType(firstLine, lastLine, type):
+	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
-		height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
+		var width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
+		var height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
 		var cavernStart = (randi() % (screenWidth - width - 1))
 		
-		# set tiles
-		for x in range(0, screenWidth):
-			for y in range(currentDepth, currentDepth+height):
-				if(x > cavernStart and x < cavernStart + width):
-					$TileMap.set_tile(x, y, { "type": TileType.Empty, "temperature": 1 })
-				else:
-					$TileMap.set_tile(x, y, { "type": TileType.Dirt, "temperature": 1 })
-		
+		# fill one area
+		setSquare(cavernStart, currentDepth, width, height, type)
 		currentDepth = currentDepth + height
+
+func setSquare(left, top, width, height, type):
+	for y in range(top, top+height):
+		for x in range(left, left + width):
+				$TileMap.set_tile(x, y, type)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
