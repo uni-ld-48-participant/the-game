@@ -17,7 +17,7 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "jump",
+"name": "stomp_down",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -27,12 +27,12 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "stomp_down",
+"name": "jump",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 19.9501, 19.005 )
+extents = Vector2( 16.0278, 16.3406 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -45,3 +45,5 @@ animation = "idle"
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true

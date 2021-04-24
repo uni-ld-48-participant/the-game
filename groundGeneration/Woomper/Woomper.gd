@@ -67,6 +67,7 @@ func consume_mushroom(delta):
 	consume_delta += delta
 	if mushroomArea != null && abs(mushroomArea.global_position.x - self.global_position.x) < 60 && consume_delta > 1 :
 		consume_delta = 0
+		$Woomp.play()
 		mushroomArea.consume()
 
 func _on_Area2D_area_entered(area):

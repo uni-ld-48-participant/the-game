@@ -35,14 +35,21 @@ func _physics_process(delta):
 			var tile_pos = collision.collider.world_to_map(position)
 			tile_pos -= collision.normal
 			var tile_id = collision.collider.get_cellv(tile_pos)
-			if Input.is_action_just_pressed("ui_down"):
+			if Input.is_action_just_pressed("ui_down") && tile_pos.y * 40 - self.position.y > 10 && abs(tile_pos.x * 40 - self.position.x) < 30:
+				if is_on_floor():
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
+			if Input.is_action_just_pressed("ui_left") && tile_pos.x * 40 - self.position.x < -10 && abs(tile_pos.y * 40 - self.position.y) < 30:
+				if is_on_floor():
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
+			if Input.is_action_just_pressed("ui_right") && tile_pos.x * 40 - self.position.x > 10 && abs(tile_pos.y * 40 - self.position.y) < 30:
 				if is_on_floor():
 					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
 
 func stomp(tileMap: TileMap, tile):
-	tile.hp -= 25
-	tileMap.apply_tile(tile)
-	print("New tile is ", tile)
+	if velocity.x < speed/2:
+		tile.hp -= 25
+		tileMap.apply_tile(tile)
+		print("New tile is ", tile)
 
 func place_fire():
 	if Input.is_action_just_pressed("ui_campfire"):

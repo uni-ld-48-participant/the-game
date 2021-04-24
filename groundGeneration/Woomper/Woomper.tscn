@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Woomper/Woomper.gd" type="Script" id=1]
 [ext_resource path="res://Woomper/woomer_sketch_1_position.png" type="Texture" id=2]
 [ext_resource path="res://Woomper/woomer_sketch_3_position.png" type="Texture" id=3]
 [ext_resource path="res://Woomper/woomer_sketch_2_position.png" type="Texture" id=4]
+[ext_resource path="res://sounds/woomp.wav" type="AudioStream" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -53,5 +54,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
 one_way_collision = true
+
+[node name="Woomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
