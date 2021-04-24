@@ -6,14 +6,15 @@ extends Node2D
 # var b = "text"
 
 const cavernMinWidth = 3
-const cavernMaxWidth = 12
+const cavernMaxWidth = 20
 const cavernMinHeight = 1
-const cavernMaxHeight = 4
+const cavernMaxHeight = 5
+const generationDepth = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# generate map here
-	var screenWidth := 26
+	var screenWidth := 50
 
 #	$TileMap.set_cell(1, 1, 1)
 #	$TileMap.set_cell(0, 0, 2)
@@ -22,7 +23,7 @@ func _ready():
 	var height = 0
 	var currentDepth = 10
 	
-	while currentDepth < 100:
+	while currentDepth < generationDepth:
 		width = (randi() % (cavernMaxWidth - cavernMinWidth) + cavernMinWidth)
 		height = (randi() % (cavernMaxHeight - cavernMinHeight) + cavernMinHeight)
 		var cavernStart = (randi() % (screenWidth - width - 1))
@@ -33,7 +34,7 @@ func _ready():
 				if(x > cavernStart and x < cavernStart + width):
 					$TileMap.set_cell(x, y, 2)
 				else:
-					$TileMap.set_cell(x, y, 1)
+					$TileMap.set_cell(x, y, 3)
 		
 		currentDepth = currentDepth + height
 
