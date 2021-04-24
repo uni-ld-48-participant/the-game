@@ -1,5 +1,6 @@
 extends TileMap
 const TEMPERATURE_PROCESS_INTERVAL = 0.5
+const CELL_NEIGHBOR = [[-1,0],[1,0],[0,-1],[0,1]]
 
 
 # Declare member variables here. Examples:
@@ -15,26 +16,45 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-var tileInfos = []
+var tileInfos = {}
 
-#func _init_tile_info():
-#	self.get
+func reset_tile(x: int, y: int):
+	set_tile(x, y, tileInfos[x][y])
 
-func set_cell(x: int, y: int, tile: int, flip_x: bool = false, flip_y: bool = false, transpose: bool = false, autotile_coord: Vector2 = Vector2( 0, 0 )):
-	.set_cell(x, y, tile)
+func set_tile(x: int, y: int, tile):
+	$ShadeMap.set_cell(x, y, 0 if tile.temperature == 0 else 1)
+	self.set_cell(x, y, tile.type)
+	if !tileInfos.has(x):
+		tileInfos[x] = {}
+	tileInfos[x][y] = tile
 
-var _x=0
-var _y=0
 func _process_temperature():
-	_x+=1
-	_y+=1
-	$ShadeMap.set_cell(_x, _y, 0)
-	#var used = self.get_used_cells()
-	#for cell in used:
-	#	$ShadeMap.set_cell(cell.x, cell.y, 1)
+	for x in tileInfos:
+		for y in tileInfos[x]:
+			var tile = tileInfos[x][y]
+			if tile.type == 3 && _is_near_cold(x, y):
+				tile.next_temperature = 0
+	_apply_next_temperature()
+				
+func _apply_next_temperature():
+	for x in tileInfos:
+		for y in tileInfos[x]:
+			var tile = tileInfos[x][y]
+			if tile.has('next_temperature'):
+				tile.temperature = tile.next_temperature
+				tile.erase('next_temperature')
+				reset_tile(x, y)
 
+func _is_near_cold(x, y) -> bool:
+	for delta in CELL_NEIGHBOR:
+		var dx = x + delta[0]
+		var dy = y + delta[1]
+		if(tileInfos.has(dx) &&
+			tileInfos[dx].has(dy) &&
+			tileInfos[dx][dy].temperature == 0):
+			return true
+	return false
 	
-
 var _time_since_last_process = 0
 func _physics_process(delta):
 	_time_since_last_process += delta

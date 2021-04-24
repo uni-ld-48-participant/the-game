@@ -32,9 +32,9 @@ func generateTiles(firstLine, lastLine):
 		for x in range(0, screenWidth):
 			for y in range(currentDepth, currentDepth+height):
 				if(x > cavernStart and x < cavernStart + width):
-					$TileMap.set_cell(x, y, 2)
+					$TileMap.set_tile(x, y, { "type": 2, "temperature": 1 })
 				else:
-					$TileMap.set_cell(x, y, 3)
+					$TileMap.set_tile(x, y, { "type": 3, "temperature": 1 })
 		
 		currentDepth = currentDepth + height
 
