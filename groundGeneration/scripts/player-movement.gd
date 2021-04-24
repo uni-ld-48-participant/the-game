@@ -5,7 +5,7 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 
-var speed = 10.0
+var speed = 1.0
 
 var target_for_target = Vector2(1,0)
 var distance_to_target = 0

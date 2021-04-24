@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.1182
 
-[node name="player2" type="KinematicBody2D"]
+[node name="adminCamera" type="KinematicBody2D"]
 script = ExtResource( 4 )
 pathToPlayer = NodePath("player-sprite")
 
