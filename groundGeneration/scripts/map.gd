@@ -1,9 +1,19 @@
 extends Node2D
 
+const TileType = {
+	Empty = 2,
+	Dirt = 3,
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+	Rock = 3,
+	Metal = 3,
+	Coal = 3,
+	Ice = 3
+	
+#	Rock = 4,
+#	Metal = 5,
+#	Coal = 6,
+#	Ice = 7
+}
 
 const cavernMinWidth = 3
 const cavernMaxWidth = 20
@@ -14,6 +24,13 @@ const screenWidth = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TileMap.set_cell(0, 0, TileType.Empty)
+	$TileMap.set_cell(1, 0, TileType.Dirt)
+	$TileMap.set_cell(2, 0, TileType.Rock)
+	$TileMap.set_cell(3, 0, TileType.Metal)
+	$TileMap.set_cell(4, 0, TileType.Coal)
+	$TileMap.set_cell(5, 0, TileType.Ice)
+
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
