@@ -37,10 +37,12 @@ func _physics_process(delta):
 			var tile_id = collision.collider.get_cellv(tile_pos)
 			if Input.is_action_just_pressed("ui_down"):
 				if is_on_floor():
-					stomp(tile_pos)
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
 
-func stomp(position):
-	print("I stomp on ", position)
+func stomp(tileMap: TileMap, tile):
+	tile.hp -= 25
+	tileMap.apply_tile(tile)
+	print("New tile is ", tile)
 
 func place_fire():
 	if Input.is_action_just_pressed("ui_campfire"):
