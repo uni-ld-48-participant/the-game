@@ -1,34 +1,51 @@
 extends TileMap
-const TEMPERATURE_PROCESS_INTERVAL = 0.5
+const TEMPERATURE_PROCESS_INTERVAL = 2
 const TEMPERATURE_THREASHHOLD = 0.9
 const CELL_NEIGHBOR = [[-1,0],[1,0],[0,-1],[0,1]]
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+	
 var tile_data = {}
+export var show_temps = false;
+export var show_hp = false;
 
 func get_tile(x: int, y: int):
 	return tile_data[x][y] if tile_data.has(x) && tile_data[x].has(y) else null
 
+
 func set_tile(x: int, y: int, type):
 	if !tile_data.has(x):
 		tile_data[x] = {}
+	
+	var label
+	if(tile_data[x].has(y)):
+		label = tile_data[x][y].label
+	elif show_hp || show_temps:
+		label = Label.new()
+		label.set_position(Vector2(x*40+15,y*40+15))
+		add_child(label)
 	tile_data[x][y] = { 
 		x = x,
 		y = y,
 		type = type, 
 		temperature = type.temperature,
-		hp = type.durability
-	}
-	apply_tile(tile_data[x][y])
+		hp = type.durability,
+		label = label
+	}	
+	apply_tile(tile_data[x][y])	
 
 func apply_tile(tile):
-	$ShadeMap.set_cell(tile.x, tile.y, 0 if tile.temperature == 0 else 1)
+	if tile.hp <= 0:
+		tile.type = Global.TileTypes.Empty
+		
+	if show_temps:
+		tile.label.text = "%.1f" % tile.temperature
+	elif show_hp:
+		tile.label.text = "%d" % tile.hp
+		
+	var isFrost = tile.temperature <= 0 && tile.type != Global.TileTypes.Empty
+	$ShadeMap.set_cell(tile.x, tile.y, 0 if isFrost else 1)
 	self.set_cell(tile.x, tile.y, tile.type.cell_type)
 
-func _process_temperature():
+func _process_temperature():	
 	for x in tile_data:
 		for y in tile_data[x]:
 			var tile = get_tile(x, y)
@@ -41,28 +58,16 @@ func _process_temperature():
 			apply_tile(tile)
 
 func _exchange_temperature(tileA, tileB):
-	if tileA == null || tileB == null:
+	if(tileA == null || tileB == null || 
+		tileA.temperature == tileB.temperature):
 		return
-	var delta = (tileA.temperature - tileB.temperature) / 5
-	
-	if delta > 0:
-		var q = 3
+	var delta = (tileA.temperature - tileB.temperature) / 3.0
 
 	if !tileA.type.static:
 		tileA.temperature -= delta
 		
 	if !tileB.type.static:
 		tileB.temperature += delta
-
-func _is_near_cold(x, y) -> bool:
-	for delta in CELL_NEIGHBOR:
-		var dx = x + delta[0]
-		var dy = y + delta[1]
-		if(tile_data.has(dx) &&
-			tile_data[dx].has(dy) &&
-			tile_data[dx][dy].temperature == 0):
-			return true
-	return false
 	
 var _time_since_last_process = 0
 func _physics_process(delta):
