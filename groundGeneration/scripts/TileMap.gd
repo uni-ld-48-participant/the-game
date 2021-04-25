@@ -4,19 +4,21 @@ const TEMPERATURE_THREASHHOLD = 0.9
 const CELL_NEIGHBOR = [[-1,0],[1,0],[0,-1],[0,1]]
 	
 var tile_data = {}
+export var show_temps = false;
+export var show_hp = false;
 
 func get_tile(x: int, y: int):
 	return tile_data[x][y] if tile_data.has(x) && tile_data[x].has(y) else null
 
 
-func set_tile(x: int, y: int, type):
+func set_tile(x: int, y: int, type:TileType):
 	if !tile_data.has(x):
 		tile_data[x] = {}
 	
 	var label
 	if(tile_data[x].has(y)):
 		label = tile_data[x][y].label
-	else:
+	elif show_hp || show_temps:
 		label = Label.new()
 		label.set_position(Vector2(x*40+15,y*40+15))
 		add_child(label)
@@ -25,18 +27,21 @@ func set_tile(x: int, y: int, type):
 		y = y,
 		type = type, 
 		temperature = type.temperature,
-		hp = type.durability,
+		hp = type.hp,
 		label = label
-	}	
+	}
 	apply_tile(tile_data[x][y])	
 
 func apply_tile(tile):
 	if tile.hp <= 0:
-		tile.type = Global.TileTypes.Empty
+		tile.type = Global.Empty
 		
-	tile.label.text = "%.1f" % tile.temperature
+	if show_temps:
+		tile.label.text = "%.1f" % tile.temperature
+	elif show_hp:
+		tile.label.text = "%d" % tile.hp
 		
-	var isFrost = tile.temperature <= 0 && tile.type != Global.TileTypes.Empty
+	var isFrost = tile.temperature <= 0 && tile.type != Global.Empty
 	$ShadeMap.set_cell(tile.x, tile.y, 0 if isFrost else 1)
 	self.set_cell(tile.x, tile.y, tile.type.cell_type)
 
