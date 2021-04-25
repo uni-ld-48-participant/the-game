@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coal_prototype.png-84b3fac6cbe9b328fac2074823fa0745.stex"
+path="res://.import/stomper.png-c6303db482809f3a31e21d122a52f592.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/coal_prototype.png"
-dest_files=[ "res://.import/coal_prototype.png-84b3fac6cbe9b328fac2074823fa0745.stex" ]
+source_file="res://Stomper/stomper.png"
+dest_files=[ "res://.import/stomper.png-c6303db482809f3a31e21d122a52f592.stex" ]
 
 [params]
 

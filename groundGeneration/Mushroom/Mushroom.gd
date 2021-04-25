@@ -10,7 +10,7 @@ func _ready():
 	
 func _process(delta):
 	$Label.text = str(hitpoints)
-	if hitpoints < 0:
+	if hitpoints < 10:
 		queue_free()	
 
 func consume():

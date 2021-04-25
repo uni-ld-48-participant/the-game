@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rock_prototype.png-b13d685c35f043287f4987bb307a565e.stex"
+path="res://.import/ice_1.png-15754ff38d0d1e6068e440482841c30d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/rock_prototype.png"
-dest_files=[ "res://.import/rock_prototype.png-b13d685c35f043287f4987bb307a565e.stex" ]
+source_file="res://resources/ice_tiles/ice_1.png"
+dest_files=[ "res://.import/ice_1.png-15754ff38d0d1e6068e440482841c30d.stex" ]
 
 [params]
 

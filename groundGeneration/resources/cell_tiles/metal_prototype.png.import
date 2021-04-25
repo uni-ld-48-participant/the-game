@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ice_prototype.png-c52a7a4b603964ce34a1d170d1b983ce.stex"
+path="res://.import/metal_prototype.png-f280cade1669860da8e6617380000640.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/ice_prototype.png"
-dest_files=[ "res://.import/ice_prototype.png-c52a7a4b603964ce34a1d170d1b983ce.stex" ]
+source_file="res://resources/cell_tiles/metal_prototype.png"
+dest_files=[ "res://.import/metal_prototype.png-f280cade1669860da8e6617380000640.stex" ]
 
 [params]
 
