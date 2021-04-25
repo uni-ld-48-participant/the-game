@@ -1,19 +1,21 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://resources/cell_tiles/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/cell_tiles/coal_prototype.png" type="Texture" id=2]
 [ext_resource path="res://scripts/map.gd" type="Script" id=3]
 [ext_resource path="res://Woomper/Woomper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/GameTileMap.gd" type="Script" id=5]
+[ext_resource path="res://sounds/song1.wav" type="AudioStream" id=6]
 [ext_resource path="res://resources/dmg_tiles/set.tres" type="TileSet" id=7]
 [ext_resource path="res://resources/cell_tiles/rock_prototype.png" type="Texture" id=8]
 [ext_resource path="res://resources/cell_tiles/metal_prototype.png" type="Texture" id=9]
 [ext_resource path="res://resources/cell_tiles/dirt_prototype.png" type="Texture" id=10]
 [ext_resource path="res://resources/ice_tiles/set.tres" type="TileSet" id=11]
-[ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://labels.tres" type="DynamicFont" id=12]
 [ext_resource path="res://Mushroom/Mushroom.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/Tuturial.gd" type="Script" id=14]
 [ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=15]
+[ext_resource path="res://CanvasLayer.gd" type="Script" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
@@ -127,10 +129,6 @@ points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
 } ]
 4/z_index = 0
 
-[sub_resource type="DynamicFont" id=6]
-size = 28
-font_data = ExtResource( 12 )
-
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 1017.95, 84.3444 )
 
@@ -179,7 +177,7 @@ margin_top = 41.2423
 margin_right = 336.196
 margin_bottom = 84.2423
 rect_pivot_offset = Vector2( 312.81, 166.446 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Move with arrows"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -190,7 +188,7 @@ margin_left = 586.508
 margin_top = 666.774
 margin_right = 944.508
 margin_bottom = 743.774
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Good Luck!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -203,7 +201,7 @@ margin_right = 168.955
 margin_bottom = -5.63873
 rect_rotation = -90.0
 rect_pivot_offset = Vector2( 199.438, 153.139 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "<- highway "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -215,7 +213,7 @@ margin_top = 63.0156
 margin_right = 1018.44
 margin_bottom = 106.016
 rect_pivot_offset = Vector2( 199.438, 153.139 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Stomp the dirt"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -228,7 +226,7 @@ margin_right = 354.296
 margin_bottom = 156.528
 rect_rotation = -360.0
 rect_pivot_offset = Vector2( 27, 69.5995 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "->"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -241,7 +239,7 @@ margin_right = 887.242
 margin_bottom = 112.431
 rect_rotation = 90.0
 rect_pivot_offset = Vector2( 27, 69.5995 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "->"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -253,7 +251,7 @@ margin_top = 223.802
 margin_right = 873.383
 margin_bottom = 254.802
 rect_pivot_offset = Vector2( 27, 69.5995 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "<-"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -265,7 +263,7 @@ margin_top = 550.171
 margin_right = 849.363
 margin_bottom = 593.171
 rect_pivot_offset = Vector2( 73.6368, 0 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "A little deeper to start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -277,7 +275,7 @@ margin_top = 198.25
 margin_right = 1183.13
 margin_bottom = 241.25
 rect_pivot_offset = Vector2( 199.438, 153.139 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Meet wooper"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -289,7 +287,7 @@ margin_top = 204.267
 margin_right = 790.579
 margin_bottom = 247.267
 rect_pivot_offset = Vector2( 199.438, 153.139 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Tasty mushrooms ( e )"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -301,7 +299,7 @@ margin_top = 364.242
 margin_right = 758.196
 margin_bottom = 407.242
 rect_pivot_offset = Vector2( 312.81, 166.446 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 12 )
 text = "Protect them ( q )"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -325,4 +323,34 @@ position = Vector2( 486.773, 252.633 )
 [node name="KinematicBody2D" parent="." instance=ExtResource( 15 )]
 position = Vector2( 175.104, 128.083 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 16 )
+
+[node name="Mushrooms" type="Label" parent="CanvasLayer"]
+margin_left = 1405.83
+margin_top = 66.5186
+margin_right = 1547.83
+margin_bottom = 95.5186
+custom_fonts/font = ExtResource( 12 )
+text = "Mushrooms"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Campfires" type="Label" parent="CanvasLayer"]
+margin_left = 1405.55
+margin_top = 19.1645
+margin_right = 1547.55
+margin_bottom = 48.1645
+custom_fonts/font = ExtResource( 12 )
+text = "Campfires"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="Tuturial/ColdTestArea" to="Tuturial" method="_on_ColdTestArea_body_entered"]
+[connection signal="campfire_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_campfire_signal"]
+[connection signal="mushrooms_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_mushrooms_signal"]

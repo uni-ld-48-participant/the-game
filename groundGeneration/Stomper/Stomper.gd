@@ -4,15 +4,21 @@ export (int) var speed = 200
 export (int) var jump_speed = -800
 export (int) var gravity = 4000
 
+export var mushrooms: int = 100
+export var campfires: int = 50
+
+signal mushrooms_signal(count)
+signal campfire_signal(count)
 
 var velocity = Vector2.ZERO
-var mushrooms: int = 5
+
 
 var stomping_delta: float = 0
 var stomping_direction: int = 0
 
 func _ready():
-	pass # Replace with function body.
+	emit_signal("campfire_signal", campfires)
+	emit_signal("mushrooms_signal", mushrooms)
 
 func get_input():
 	velocity.x = 0
@@ -86,6 +92,8 @@ func check_stomping(delta):
 
 func place_fire():
 	if Input.is_action_just_pressed("ui_campfire") && is_on_floor():
+		campfires -= 1
+		emit_signal("campfire_signal", campfires)
 		print("It's a campfire")
 		var campfire = load("res://Campfire/Campfire.tscn").instance()
 		get_parent().add_child(campfire)
@@ -94,6 +102,7 @@ func place_fire():
 func place_mushroom():
 	if Input.is_action_just_pressed("ui_mushroom") && mushrooms > 0 && is_on_floor():
 		mushrooms -= 1
+		emit_signal("mushrooms_signal", mushrooms)
 		print("It's a mushroom")
 		var mushroom = load("res://Mushroom/Mushroom.tscn").instance()
 		get_parent().add_child(mushroom)
@@ -109,4 +118,5 @@ func pick_up_mushroom():
 		for body in bodies:
 			if body is KinematicBody2D && body.is_in_group("mushroom"):
 				mushrooms += 1
+				emit_signal("mushrooms_signal", mushrooms)
 				body.queue_free()
