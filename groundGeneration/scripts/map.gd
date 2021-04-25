@@ -51,6 +51,8 @@ func generateTiles(firstLine, lastLine):
 	addTileType(firstLine, lastLine, Global.Rock)
 	addTileType(firstLine, lastLine, Global.Coal)	
 	addTileType(firstLine, lastLine, Global.Empty)
+	
+	placeMashrum(100, -40)
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
@@ -72,6 +74,8 @@ func setSquare(left, top, width, height, type):
 	for y in range(top, top+height):
 		for x in range(left, left + width):
 				$GameTileMap.set_tile(x, y, type)
+	if type == Global.Empty :
+		placeMashrum((left+width/2)*40, (top+height/2)*40)
 
 func setDipper(left, top, width, height, type):
 	for y in range(top, top+height):
@@ -80,6 +84,10 @@ func setDipper(left, top, width, height, type):
 	for x in range(left, left+width):
 		$GameTileMap.set_tile(x, top+height, type)
 
+func placeMashrum(x, y):
+	var mushroom = load("res://Mushroom/Mushroom.tscn").instance()
+	add_child(mushroom)
+	mushroom.global_position = Vector2(x, y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
