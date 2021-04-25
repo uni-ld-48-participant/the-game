@@ -8,12 +8,11 @@ export(NodePath) var pathToMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"Control-Menu".show()
+	$"Control-Menu".hide()
 	$"Control-Menu/Control-Main".show()
 	$"Control-Menu/Control-About".hide()
-	$"Button-Pause".hide()
-	$background.show()
-	get_tree().paused = true
+	$"Button-Pause".show()
+	$background.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +41,9 @@ func _on_ButtonStart_pressed():
 	$"Button-Pause".show()
 	$background.hide()
 	get_tree().paused = false
+
+
+func _on_ButtonPause2_pressed():
+	$"Control-Menu".show()
+	$"Button-Pause".hide()
+	get_tree().paused = true
