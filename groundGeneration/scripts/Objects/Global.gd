@@ -22,7 +22,7 @@ func _init():
 
 	Rock = TileType.new()
 	Rock.cell_type = 2
-	Rock.hp = 10000
+	Rock.hp = 100000
 	Rock.generation_max_width = 8
 	Rock.generation_max_height = 4
 	Rock.vertcal_distance = 1
