@@ -22,19 +22,20 @@ animations = [ {
 }, {
 "frames": [  ],
 "loop": true,
-"name": "stomp_side",
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
-"name": "jump",
+"name": "stomp_side",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16.0278, 16.3406 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 17.8461
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
+position = Vector2( 0, -1 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

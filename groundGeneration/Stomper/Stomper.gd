@@ -24,29 +24,26 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if Input.is_action_just_pressed("ui_up"):
-		if is_on_floor():
-			velocity.y = jump_speed
+		velocity.y = jump_speed
 	$AnimatedSprite.flip_h = velocity.x < 0
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-			
 		if collision.collider is TileMap:
 			var tile_pos = collision.collider.world_to_map(position)
-			tile_pos -= collision.normal
-			var tile_id = collision.collider.get_cellv(tile_pos)
-			if Input.is_action_just_pressed("ui_down") && tile_pos.y * 40 - self.position.y > 10 && abs(tile_pos.x * 40 - self.position.x) < 30:
+			if Input.is_action_just_pressed("ui_down"):
 				if is_on_floor():
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
-			if Input.is_action_just_pressed("ui_left") && tile_pos.x * 40 - self.position.x < -10 && abs(tile_pos.y * 40 - self.position.y) < 30:
-				if is_on_floor():
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
-			if Input.is_action_just_pressed("ui_right") && tile_pos.x * 40 - self.position.x > 10 && abs(tile_pos.y * 40 - self.position.y) < 30:
-				if is_on_floor():
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y))
+					print("Trying stomp on: ", tile_pos)
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y + 1))
+			if Input.is_action_just_pressed("ui_left"):
+					print("Trying stomp on: ", tile_pos)
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x - 1, tile_pos.y))
+			if Input.is_action_just_pressed("ui_right"):
+					print("Trying stomp on: ", tile_pos)
+					stomp(collision.collider, collision.collider.get_tile(tile_pos.x + 1, tile_pos.y))
 
 func stomp(tileMap: TileMap, tile):
-	if velocity.x < speed/2:
+	if velocity.x < speed/2 && tile != null:
 		tile.hp -= 25
 		tileMap.apply_tile(tile)
 		print("New tile is ", tile)

@@ -15,3 +15,5 @@ func _process(delta):
 
 func consume():
 	hitpoints -= 10
+	if hitpoints % 20 == 0:
+		$AnimatedSprite.frame += 1

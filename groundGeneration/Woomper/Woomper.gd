@@ -10,8 +10,8 @@ var idleStep = 0
 var stepDelta = 0
 var consume_delta = 0
 
-var campFireArea: Area2D = null
-var mushroomArea: RigidBody2D = null
+var mushroomArray = []
+var campFireArray = []
 
 
 var velocity = Vector2.ZERO
@@ -51,10 +51,12 @@ func _physics_process(delta):
 
 func idle_moving_x(delta):
 	var goal_position = -1
-	if mushroomArea != null && mushroomArea.position.x > 0:
-		goal_position = mushroomArea.position.x
-	elif campFireArea != null && campFireArea.position.x > 0:
-		goal_position = campFireArea.position.x
+	var mushroom = getNearestMushroom(self.position)
+	var campfire = getNearestCampfire(self.position)
+	if mushroom != null && mushroom.position.x > 0:
+		goal_position = mushroom.position.x
+	elif campfire != null && campfire.position.x > 0:
+		goal_position = campfire.position.x
 	
 	if (idleStep > steps/2 - 1 && goal_position == -1) || (position.x < goal_position):
 		idleStep = (idleStep + 1) % steps
@@ -63,20 +65,47 @@ func idle_moving_x(delta):
 		idleStep = (idleStep + 1) % steps
 		return -speed
 
+func getNearestMushroom(myPosition: Vector2):
+	if !mushroomArray.empty():
+		var mushroom = mushroomArray[0]
+		for item in mushroomArray:
+			if item == null:
+				mushroomArray.erase(item)
+			elif mushroom != null && abs(item.position.x - myPosition.x) <  abs(mushroom.position.x - myPosition.x):
+				mushroom = item
+			else:
+				mushroom = item
+		return mushroom
+	else:
+		return null
+	
+func getNearestCampfire(myPosition: Vector2):
+	if !campFireArray.empty():
+		var campfire = campFireArray[0]
+		for item in campFireArray:
+			if abs(item.position.x - myPosition.x) <  abs(campfire.position.x - myPosition.x):
+				campfire = item
+		return campfire
+	else:
+		return null
+
 func consume_mushroom(delta):
 	consume_delta += delta
-	if mushroomArea != null && abs(mushroomArea.global_position.x - self.global_position.x) < 60 && consume_delta > 1 :
+	var mushroom = getNearestMushroom(self.position)
+	if mushroom != null && abs(mushroom.position.x - self.position.x) < 60 && consume_delta > 1 :
 		consume_delta = 0
 		$Woomp.play()
-		mushroomArea.consume()
+		mushroom.consume()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("campfire"):
 		print("I collided with campfire")
-		campFireArea = area as Area2D
+		if !campFireArray.has(area):
+			campFireArray.append(area as Area2D)
 
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("mushroom"):
 		print("I collided with campfire")
-		mushroomArea = body as RigidBody2D
+		if !mushroomArray.has(body):
+			mushroomArray.append(body as RigidBody2D)
