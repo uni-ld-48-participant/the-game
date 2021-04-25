@@ -37,6 +37,7 @@ func _init():
 	Coal = TileType.new()
 	Coal.cell_type = 4
 	Coal.hp = 500
-	Coal.generation_max_width = 5
-	Coal.generation_max_height = 5
+	Coal.generation_max_width = 3
+	Coal.generation_max_height = 3
 	Coal.vertcal_distance = 2
+	Rock.horizontal_limit = 4
