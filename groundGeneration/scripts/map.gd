@@ -10,6 +10,9 @@ const screenWidth = 30
 
 var rng_seed : int
 
+func _process(delta):
+	if Input.is_action_pressed("ui_restart"):
+		restart()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -72,6 +75,9 @@ func placeMashrum(x, y):
 	var mushroom = load("res://Mushroom/Mushroom.tscn").instance()
 	add_child(mushroom)
 	mushroom.global_position = Vector2(x, y)
+	
+func restart():
+	get_tree().reload_current_scene()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
