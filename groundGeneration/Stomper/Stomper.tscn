@@ -43,15 +43,20 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ), ExtResource( 34 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "stomp_left",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "jump",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 32 ), ExtResource( 24 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "stomp_right",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 13 ) ],
 "loop": true,
@@ -63,15 +68,10 @@ animations = [ {
 "name": "move_right",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ), ExtResource( 34 ), ExtResource( 33 ) ],
+"frames": [ ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 32 ), ExtResource( 24 ), ExtResource( 29 ) ],
 "loop": true,
-"name": "stomp_left",
+"name": "stomp_right",
 "speed": 15.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "move_left",
-"speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

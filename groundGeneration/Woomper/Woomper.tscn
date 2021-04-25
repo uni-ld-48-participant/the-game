@@ -21,15 +21,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "consume",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "consume",
+"speed": 10.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

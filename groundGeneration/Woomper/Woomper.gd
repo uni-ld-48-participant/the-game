@@ -1,14 +1,15 @@
 extends KinematicBody2D
 
-export (int) var speed = 50
+export (int) var speed = 60
 export (int) var jump_speed = -200
 export (int) var gravity = 4000
-export (int) var steps = 200
+export (int) var steps = 300
 export (String) var nick = "Woomper"
 
 var idleStep = 0
 var stepDelta = 0
 var consume_delta = 0
+var search_delta = 0
 var health_delta = 0
 var health = 100
 var isFrozen = false
@@ -50,8 +51,11 @@ func idle_moving_x(delta):
 	if isFrozen:
 		return 0
 	var goal_position = -1
-	var mushroom = getNearestMushroom(self.position)
-	var campfire = getNearestCampfire(self.position)
+	if search_delta > 1:
+		var mushroom = getNearestMushroom(self.position)
+		var campfire = getNearestCampfire(self.position)
+		search_delta = 0
+	search_delta += delta
 	if mushroom != null && mushroom.position.x > 0:
 		goal_position = mushroom.position.x
 	elif campfire != null && campfire.position.x > 0:
