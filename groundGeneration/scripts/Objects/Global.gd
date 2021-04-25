@@ -5,6 +5,8 @@ var Rock : TileType
 var Metal : TileType
 var Coal : TileType
 
+var All:Array
+
 func _init():
 	Empty = TileType.new()
 	Empty.cell_type = 0
@@ -37,6 +39,9 @@ func _init():
 	Coal = TileType.new()
 	Coal.cell_type = 4
 	Coal.hp = 500
-	Coal.generation_max_width = 5
-	Coal.generation_max_height = 5
-	Coal.vertcal_distance = 2
+	Coal.generation_max_width = 3
+	Coal.generation_max_height = 3
+	Coal.vertcal_distance = 2	
+	Coal.horizontal_limit = 4
+	
+	All = [Empty, Dirt, Rock, Metal, Coal]
