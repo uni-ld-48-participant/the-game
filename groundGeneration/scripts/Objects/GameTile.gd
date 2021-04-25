@@ -4,7 +4,7 @@ const FREEZING_THRESHOLD = 10
 const CONDUCTIVITY = 3.0
 const CONDUCTIVITY_THREASHHOLD = 0.5
 
-export var show_temps = true;
+export var show_temps = false;
 export var show_hp = false;
 
 var x:int
