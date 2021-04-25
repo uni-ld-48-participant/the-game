@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/map.gd" type="Script" id=3]
 [ext_resource path="res://Woomper/Woomper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/GameTileMap.gd" type="Script" id=5]
-[ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=6]
+[ext_resource path="res://adminCamera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/dmg_tiles/set.tres" type="TileSet" id=7]
 [ext_resource path="res://resources/cell_tiles/rock_prototype.png" type="Texture" id=8]
 [ext_resource path="res://resources/cell_tiles/metal_prototype.png" type="Texture" id=9]
@@ -145,9 +145,6 @@ tile_set = ExtResource( 11 )
 cell_size = Vector2( 40, 40 )
 format = 1
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 143.469, -29.3162 )
-
 [node name="KinematicBody2D2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 843.823, -32.0917 )
 
@@ -156,3 +153,5 @@ position = Vector2( 702.242, -30.2039 )
 
 [node name="KinematicBody2D4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1062.8, -32.0917 )
+
+[node name="adminCamera" parent="." instance=ExtResource( 6 )]

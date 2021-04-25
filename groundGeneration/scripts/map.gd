@@ -45,20 +45,23 @@ func generateTiles(firstLine, lastLine):
 	# resources fill
 	addTileType(firstLine, lastLine, Global.Metal)
 	addTileType(firstLine, lastLine, Global.Rock)
-	addTileType(firstLine, lastLine, Global.Empty)
 	addTileType(firstLine, lastLine, Global.Coal)	
+	addTileType(firstLine, lastLine, Global.Empty)
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
 		var height = int(rand_range(cavernMinHeight, type.generation_max_height - cavernMinHeight))
-		var cavernStart = int(rand_range(0, screenWidth - width - 1))
-		
 		height = min(height, lastLine-currentDepth-type.vertcal_distance)
 		
-		# fill one area
-		setSquare(cavernStart, currentDepth, width, height, type)
+		var segmentWidth = screenWidth / type.horizontal_limit
+		for i in range(type.horizontal_limit):
+			# fill one area
+			var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
+			width = min(width, segmentWidth)
+			var cavernStart = i*segmentWidth + int(rand_range(0, segmentWidth - width))
+			setSquare(cavernStart, currentDepth, width, height, type)
+			
 		currentDepth = currentDepth + height + type.vertcal_distance
 
 func setSquare(left, top, width, height, type):

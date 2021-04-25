@@ -3,8 +3,8 @@ class_name GameTile
 const FREEZING_THRESHOLD = 10
 const CONDUCTIVITY = 3
 
-export var show_temps = false;
-export var show_hp = true;
+export var show_temps = true;
+export var show_hp = false;
 
 var x:int
 var y:int
