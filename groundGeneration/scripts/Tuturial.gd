@@ -12,6 +12,14 @@ func _ready():
 #	pass
 
 
-func _on_StartArea_body_entered(body):
-	map.get_tile(30, 30).temperature = 0
+func _on_ColdTestArea_body_entered(body):
+	if body.is_in_group("woompers"):
+		map.get_tile(8, 9).temperature = 0
+		map.get_tile(8, 10).temperature = 0
+		map.get_tile(8, 11).temperature = 0
+		map.get_tile(8, 12).temperature = 0
+		map.get_tile(20, 9).temperature = 0
+		map.get_tile(20, 10).temperature = 0
+		map.get_tile(20, 11).temperature = 0
+		map.get_tile(20, 12).temperature = 0
 	pass # Replace with function body.

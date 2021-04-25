@@ -35,8 +35,6 @@ func generateTiles(firstLine, lastLine):
 	addTileType(firstLine, lastLine, Global.Rock)
 	addTileType(firstLine, lastLine, Global.Coal)	
 	addTileType(firstLine, lastLine, Global.Empty)
-	
-	placeMashrum(100, -40)
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine

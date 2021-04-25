@@ -1,28 +1,19 @@
-<<<<<<< HEAD
-[gd_scene load_steps=24 format=2]
-=======
-[gd_scene load_steps=18 format=2]
->>>>>>> main
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://resources/cell_tiles/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/cell_tiles/coal_prototype.png" type="Texture" id=2]
 [ext_resource path="res://scripts/map.gd" type="Script" id=3]
 [ext_resource path="res://Woomper/Woomper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/GameTileMap.gd" type="Script" id=5]
-[ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/dmg_tiles/set.tres" type="TileSet" id=7]
 [ext_resource path="res://resources/cell_tiles/rock_prototype.png" type="Texture" id=8]
 [ext_resource path="res://resources/cell_tiles/metal_prototype.png" type="Texture" id=9]
 [ext_resource path="res://resources/cell_tiles/dirt_prototype.png" type="Texture" id=10]
 [ext_resource path="res://resources/ice_tiles/set.tres" type="TileSet" id=11]
-<<<<<<< HEAD
 [ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Mushroom/Mushroom.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/Tuturial.gd" type="Script" id=14]
 [ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=15]
-=======
-[ext_resource path="res://sounds/song1.wav" type="AudioStream" id=12]
->>>>>>> main
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
@@ -144,7 +135,7 @@ font_data = ExtResource( 12 )
 extents = Vector2( 1017.95, 84.3444 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 241.72, 35.4169 )
+extents = Vector2( 600.803, 35.4169 )
 
 [node name="map" type="Node2D"]
 script = ExtResource( 3 )
@@ -171,20 +162,8 @@ tile_set = ExtResource( 11 )
 cell_size = Vector2( 40, 40 )
 format = 1
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 143.469, -29.3162 )
-
-[node name="KinematicBody2D2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1339.19, 61.8918 )
-
-[node name="KinematicBody2D3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1285.51, 65.367 )
-
 [node name="KinematicBody2D4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 900.189, 255.902 )
-
-<<<<<<< HEAD
-[node name="adminCamera" parent="." instance=ExtResource( 6 )]
 
 [node name="Tuturial" type="Node2D" parent="."]
 script = ExtResource( 14 )
@@ -345,8 +324,5 @@ position = Vector2( 486.773, 252.633 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 15 )]
 position = Vector2( 175.104, 128.083 )
-=======
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
-autoplay = true
->>>>>>> main
+
+[connection signal="body_entered" from="Tuturial/ColdTestArea" to="Tuturial" method="_on_ColdTestArea_body_entered"]
