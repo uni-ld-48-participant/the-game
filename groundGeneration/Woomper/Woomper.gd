@@ -13,8 +13,8 @@ var health_delta = 0
 var health = 100
 var isFrozen = false
 
-var mushroomArray = []
-var campFireArray = []
+var mushroom: KinematicBody2D = null
+var campfire: Area2D = null
 
 
 var velocity = Vector2.ZERO
@@ -66,33 +66,35 @@ func idle_moving_x(delta):
 
 func getNearestMushroom(myPosition: Vector2):
 	var bodies = $Area2D.get_overlapping_bodies()
-	
-	if !mushroomArray.empty():
-		var mushroom = mushroomArray[0]
-		for i in range(mushroomArray.size() - 1, -1, -1):
-			if mushroomArray[i] == null || abs(mushroomArray[i].position.y - myPosition.x) < 120:
-				mushroomArray.remove(i)
-			elif mushroom != null && (abs(mushroomArray[i].position.x - myPosition.x) <  abs(mushroom.position.x - myPosition.x)):
-				mushroom = mushroomArray[i]
-			elif mushroom == null && mushroomArray[i] != null:
-				mushroom = mushroomArray[i]
-		return mushroom
+	if bodies.empty():
+		mushroom = null
 	else:
-		return null
+		for body in bodies:
+			if body is KinematicBody2D && body.is_in_group('mushroom'):
+				if mushroom == null:
+					mushroom = body
+				elif abs(mushroom.position.x - myPosition.x) > abs(body.position.x - myPosition.x):
+					mushroom = body
+	if mushroom != null:
+		if abs(mushroom.position.y - myPosition.y) > 100:
+			mushroom = null
+	return mushroom
 	
 func getNearestCampfire(myPosition: Vector2):
-	if !campFireArray.empty():
-		var campfire = campFireArray[0]
-		for i in range(campFireArray.size() - 1, -1, -1):
-			if campFireArray[i] == null:
-				campFireArray.remove(i)
-			elif campfire != null && (abs(campFireArray[i].position.x - myPosition.x) <  abs(campfire.position.x - myPosition.x)):
-				campfire = campFireArray[i]
-			elif campfire == null && campFireArray[i] != null:
-				campfire = campFireArray[i]
-		return campfire
+	var bodies = $Area2D.get_overlapping_areas()
+	if bodies.empty():
+		campfire = null
 	else:
-		return null
+		for body in bodies:
+			if body is KinematicBody2D && body.is_in_group('campfire'):
+				if campfire == null:
+					campfire = body
+				elif abs(campfire.position.x - myPosition.x) > abs(campfire.position.x - myPosition.x):
+					campfire = body
+	if campfire != null:
+		if abs(campfire.position.y - myPosition.y) > 100:
+			campfire = null
+	return campfire
 
 func consume_mushroom(delta):
 	consume_delta += delta
@@ -105,16 +107,12 @@ func consume_mushroom(delta):
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("campfire"):
 		print("I collided with campfire")
-		if !campFireArray.has(area):
-			campFireArray.append(area as Area2D)
 
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("mushroom"):
 		print("I collided with mushroom")
 		$Mushroom.play()
-		if !mushroomArray.has(body):
-			mushroomArray.append(body as KinematicBody2D)
 			
 func checkHealth(delta):
 	if health_delta < 1:
