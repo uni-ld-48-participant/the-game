@@ -26,6 +26,10 @@ func _ready():
 	for q in range(0,20):
 		$GameTileMap.set_tile(q, 5, Global.Dirt)
 		$GameTileMap.get_tile(q, 5).hp -= 5*q
+		
+	for q in range(0,20):
+		$GameTileMap.set_tile(q, 6, Global.Metal)
+		$GameTileMap.get_tile(q, 6).hp -= 25*q
 
 	generateTiles(10, 10+generationDepth)
 	setDipper(0, 10, screenWidth, generationDepth, Global.Rock)
