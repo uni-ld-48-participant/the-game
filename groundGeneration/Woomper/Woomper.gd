@@ -56,9 +56,9 @@ func idle_moving_x(delta):
 		var campfire = getNearestCampfire(self.position)
 		search_delta = 0
 	search_delta += delta
-	if mushroom != null && mushroom.position.x > 0:
+	if is_instance_valid(mushroom) && mushroom.position.x > 0:
 		goal_position = mushroom.position.x
-	elif campfire != null && campfire.position.x > 0:
+	elif is_instance_valid(campfire) && campfire.position.x > 0:
 		goal_position = campfire.position.x
 	
 	if (idleStep > steps/2 - 1 && goal_position == -1) || (position.x < goal_position):
@@ -75,11 +75,11 @@ func getNearestMushroom(myPosition: Vector2):
 	else:
 		for body in bodies:
 			if body is KinematicBody2D && body.is_in_group('mushroom'):
-				if mushroom == null:
+				if mushroom == null || !is_instance_valid(mushroom):
 					mushroom = body
 				elif abs(mushroom.position.x - myPosition.x) > abs(body.position.x - myPosition.x):
 					mushroom = body
-	if mushroom != null:
+	if is_instance_valid(mushroom):
 		if abs(mushroom.position.y - myPosition.y) > 100:
 			mushroom = null
 	return mushroom
@@ -91,11 +91,11 @@ func getNearestCampfire(myPosition: Vector2):
 	else:
 		for body in bodies:
 			if body is KinematicBody2D && body.is_in_group('campfire'):
-				if campfire == null:
+				if campfire == null || !is_instance_valid(campfire):
 					campfire = body
 				elif abs(campfire.position.x - myPosition.x) > abs(campfire.position.x - myPosition.x):
 					campfire = body
-	if campfire != null:
+	if is_instance_valid(campfire):
 		if abs(campfire.position.y - myPosition.y) > 100:
 			campfire = null
 	return campfire
@@ -103,7 +103,7 @@ func getNearestCampfire(myPosition: Vector2):
 func consume_mushroom(delta):
 	consume_delta += delta
 	var mushroom = getNearestMushroom(self.position)
-	if mushroom != null && abs(mushroom.position.x - self.position.x) < 60 && abs(mushroom.position.y - self.position.y) < 30 && consume_delta > 1 :
+	if is_instance_valid(mushroom) && abs(mushroom.position.x - self.position.x) < 60 && abs(mushroom.position.y - self.position.y) < 30 && consume_delta > 1 :
 		consume_delta = 0
 		$Woomp.play()
 		mushroom.consume()
