@@ -86,14 +86,14 @@ func check_stomping(delta):
 		return false
 
 func place_fire():
-	if Input.is_action_just_pressed("ui_campfire"):
+	if Input.is_action_just_pressed("ui_campfire") && is_on_floor():
 		print("It's a campfire")
 		var campfire = load("res://Campfire/Campfire.tscn").instance()
 		get_parent().add_child(campfire)
 		campfire.global_position = self.global_position
 		
 func place_mushroom():
-	if Input.is_action_just_pressed("ui_mushroom") && mushrooms > 0:
+	if Input.is_action_just_pressed("ui_mushroom") && mushrooms > 0 && is_on_floor():
 		mushrooms -= 1
 		print("It's a mushroom")
 		var mushroom = load("res://Mushroom/Mushroom.tscn").instance()
@@ -108,6 +108,6 @@ func pick_up_mushroom():
 		var bodies = $Area2D.get_overlapping_bodies()
 		print("Bodies is: ", bodies)
 		for body in bodies:
-			if body is RigidBody2D && body.is_in_group("mushroom"):
+			if body is KinematicBody2D && body.is_in_group("mushroom"):
 				mushrooms += 1
 				body.queue_free()
