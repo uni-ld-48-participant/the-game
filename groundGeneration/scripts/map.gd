@@ -7,7 +7,6 @@ const cavernMaxHeight = 5
 const generationDepth = 100
 const screenWidth = 50
 
-var rng = RandomNumberGenerator.new()
 var rng_seed : int
 
 # Called when the node enters the scene tree for the first time.
@@ -22,13 +21,15 @@ func _ready():
 	$TileMap.set_tile(10, 1, Global.Dirt)
 	$TileMap.set_tile(10, 2, Global.Ice)
 	$TileMap.set_tile(10, 3, Global.Dirt)
-	generateTiles(10, generationDepth)
+	generateTiles(10, 10+generationDepth)
+	setDipper(0, 10, screenWidth, generationDepth, Global.Rock)
 
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
 	rng_seed = 1
-	#rng.randomize()
+	seed(rng_seed)
+	#randomize()
 
 	# base fill
 	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.Dirt)
@@ -47,6 +48,8 @@ func addTileType(firstLine, lastLine, type):
 		var height = int(rand_range(cavernMinHeight, type.generation_max_height - cavernMinHeight))
 		var cavernStart = int(rand_range(0, screenWidth - width - 1))
 		
+		height = min(height, lastLine-currentDepth-type.vertcal_distance)
+		
 		# fill one area
 		setSquare(cavernStart, currentDepth, width, height, type)
 		currentDepth = currentDepth + height + type.vertcal_distance
@@ -55,6 +58,15 @@ func setSquare(left, top, width, height, type):
 	for y in range(top, top+height):
 		for x in range(left, left + width):
 				$TileMap.set_tile(x, y, type)
+
+func setDipper(left, top, width, height, type):
+	for y in range(top, top+height):
+		$TileMap.set_tile(left, y, type)
+		$TileMap.set_tile(left+width-1, y, type)
+	for x in range(left, left+width):
+		$TileMap.set_tile(x, top+height, type)
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
