@@ -134,6 +134,7 @@ script = ExtResource( 5 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 40, 40 )
 format = 1
+tile_data = PoolIntArray( -1245185, 2, 0, -1310720, 3, 0, -1310719, 2, 0, -1310718, 2, 0, -1310717, 2, 0, -1310716, 2, 0, -1310715, 2, 0, -1310714, 2, 0, -1310713, 3, 0, -1310712, 2, 0, -1310711, 2, 0, -1310710, 2, 0, -1310709, 2, 0, -1310708, 3, 0, -1310707, 2, 0, -1310706, 2, 0, -1310705, 2, 0, -1310704, 3, 0, -1310703, 2, 0, -1310702, 2, 0, -1310701, 2, 0, -1310700, 2, 0, -1179649, 2, 0, -1245164, 2, 0, -1114113, 2, 0, -1179628, 2, 0, -1048577, 2, 0, -1114092, 2, 0, -983041, 3, 0, -1048556, 3, 0, -917505, 2, 0, -983020, 2, 0, -851969, 3, 0, -917484, 2, 0, -786433, 2, 0, -851948, 2, 0, -720897, 3, 0, -786412, 2, 0, -655361, 2, 0, -720876, 3, 0, -589825, 2, 0, -655351, 3, 0, -655340, 2, 0, -524289, 2, 0, -589824, 3, 0, -589823, 2, 0, -589822, 2, 0, -589821, 3, 0, -589820, 2, 0, -589819, 2, 0, -589818, 2, 0, -589817, 3, 0, -589816, 2, 0, -589815, 2, 0, -589809, 2, 0, -589808, 2, 0, -589807, 3, 0, -589806, 2, 0, -589805, 2, 0, -589804, 2, 0, -393205, 2, 0, -393204, 1, 0, -393203, 3, 0, -393202, 2, 0, -393201, 1, 0 )
 
 [node name="DmgMap" type="TileMap" parent="GameTileMap"]
 tile_set = ExtResource( 7 )
@@ -155,3 +156,33 @@ position = Vector2( 702.242, -30.2039 )
 position = Vector2( 1062.8, -32.0917 )
 
 [node name="adminCamera" parent="." instance=ExtResource( 6 )]
+
+[node name="Label-left" type="Label" parent="."]
+margin_left = 26.544
+margin_top = -401.303
+margin_right = 109.544
+margin_bottom = -387.303
+text = "A - move left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-right" type="Label" parent="."]
+margin_left = 192.196
+margin_top = -400.45
+margin_right = 284.196
+margin_bottom = -386.45
+text = "D - move right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-right2" type="Label" parent="."]
+margin_left = 333.773
+margin_top = -440.381
+margin_right = 425.773
+margin_bottom = -426.381
+text = "W - jump"
+__meta__ = {
+"_edit_use_anchors_": false
+}
