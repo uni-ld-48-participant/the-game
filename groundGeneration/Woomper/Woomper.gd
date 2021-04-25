@@ -136,7 +136,7 @@ func checkHealth(delta):
 func checkNearTiles(position: Vector2, tileMap: TileMap):
 	var tile = tileMap.get_tile(position.x, position.y + 1)
 	print("Tile is ", tile)
-	if tile != null && tile.temperature < 2:
+	if tile != null && tile.temperature < 3:
 		self.health -= 10
 		$Ouch.play()
 		
