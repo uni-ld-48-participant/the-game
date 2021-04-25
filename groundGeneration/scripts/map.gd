@@ -39,7 +39,7 @@ func _ready():
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
-	rng_seed = 1
+	rng_seed = 6
 	seed(rng_seed)
 	#randomize()
 

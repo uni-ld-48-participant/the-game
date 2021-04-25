@@ -1,7 +1,7 @@
 extends Object
 class_name GameTile
 const FREEZING_THRESHOLD = 10
-const CONDUCTIVITY = 4
+const CONDUCTIVITY = 3.0
 const CONDUCTIVITY_THREASHHOLD = 0.5
 
 export var show_temps = true;
@@ -44,9 +44,9 @@ func exchange_temperature(tile):
 		return
 
 	var delta = (temperature - tile.temperature) / 4.0
-	
+
 	if delta > CONDUCTIVITY:
-		delta += CONDUCTIVITY
+		delta = CONDUCTIVITY
 	elif delta < -CONDUCTIVITY:
 		delta = -CONDUCTIVITY
 	
@@ -57,7 +57,7 @@ func process_temerature():
 	if abs(_temp_delta) < CONDUCTIVITY_THREASHHOLD:
 		return		
 		
-	self.temperature = floor(self.temperature+_temp_delta)
+	self.temperature = floor(self.temperature + _temp_delta)
 	_temp_delta = 0
 
 func _reset_stats():
