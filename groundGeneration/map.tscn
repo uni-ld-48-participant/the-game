@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://resources/cell_tiles/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/cell_tiles/coal_prototype.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://resources/cell_tiles/dirt_prototype.png" type="Texture" id=10]
 [ext_resource path="res://resources/ice_tiles/set.tres" type="TileSet" id=11]
 [ext_resource path="res://sounds/song1.wav" type="AudioStream" id=12]
+[ext_resource path="res://Menu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://adminCamera.tscn" type="PackedScene" id=14]
+[ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://fonts/RosesareFF0000.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
@@ -125,6 +129,27 @@ points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
 } ]
 4/z_index = 0
 
+[sub_resource type="DynamicFont" id=8]
+size = 14
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 14
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=7]
+outline_size = 1
+outline_color = Color( 0.101961, 0.0862745, 0.0862745, 1 )
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
+
 [node name="map" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -135,7 +160,7 @@ script = ExtResource( 5 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 40, 40 )
 format = 1
-tile_data = PoolIntArray( -1245185, 2, 0, -1310720, 3, 0, -1310719, 2, 0, -1310718, 2, 0, -1310717, 2, 0, -1310716, 2, 0, -1310715, 2, 0, -1310714, 2, 0, -1310713, 3, 0, -1310712, 2, 0, -1310711, 2, 0, -1310710, 2, 0, -1310709, 2, 0, -1310708, 3, 0, -1310707, 2, 0, -1310706, 2, 0, -1310705, 2, 0, -1310704, 3, 0, -1310703, 2, 0, -1310702, 2, 0, -1310701, 2, 0, -1310700, 2, 0, -1179649, 2, 0, -1245164, 2, 0, -1114113, 2, 0, -1179628, 2, 0, -1048577, 2, 0, -1114092, 2, 0, -983041, 3, 0, -1048556, 3, 0, -917505, 2, 0, -983020, 2, 0, -851969, 3, 0, -917484, 2, 0, -786433, 2, 0, -851948, 2, 0, -720897, 3, 0, -786412, 2, 0, -655361, 2, 0, -720876, 3, 0, -589825, 2, 0, -655351, 3, 0, -655340, 2, 0, -524289, 2, 0, -589824, 3, 0, -589823, 2, 0, -589822, 2, 0, -589821, 3, 0, -589820, 2, 0, -589819, 2, 0, -589818, 2, 0, -589817, 3, 0, -589816, 2, 0, -589815, 2, 0, -589809, 2, 0, -589808, 2, 0, -589807, 3, 0, -589806, 2, 0, -589805, 2, 0, -589804, 2, 0, -393205, 2, 0, -393204, 1, 0, -393203, 3, 0, -393202, 2, 0, -393201, 1, 0 )
+tile_data = PoolIntArray( -1245185, 2, 0, -1310720, 3, 0, -1310719, 2, 0, -1310718, 2, 0, -1310717, 2, 0, -1310716, 2, 0, -1310715, 2, 0, -1310714, 2, 0, -1310713, 3, 0, -1310712, 2, 0, -1310711, 2, 0, -1310710, 2, 0, -1310709, 2, 0, -1310708, 3, 0, -1310707, 2, 0, -1310706, 2, 0, -1310705, 2, 0, -1310704, 3, 0, -1310703, 2, 0, -1310702, 2, 0, -1310701, 2, 0, -1310700, 2, 0, -1179649, 2, 0, -1245164, 2, 0, -1114113, 2, 0, -1179628, 2, 0, -1048577, 2, 0, -1114092, 2, 0, -983041, 3, 0, -1048556, 3, 0, -917505, 2, 0, -983020, 2, 0, -851969, 3, 0, -917484, 2, 0, -786433, 2, 0, -851948, 2, 0, -720897, 3, 0, -786412, 2, 0, -655361, 2, 0, -720876, 3, 0, -589825, 2, 0, -655349, 3, 0, -655340, 2, 0, -524289, 2, 0, -589824, 3, 0, -589823, 2, 0, -589822, 2, 0, -589821, 3, 0, -589820, 2, 0, -589819, 2, 0, -589818, 2, 0, -589817, 3, 0, -589816, 2, 0, -589815, 2, 0, -589814, 3, 0, -589813, 3, 0, -589809, 2, 0, -589808, 2, 0, -589807, 3, 0, -589806, 2, 0, -589805, 2, 0, -589804, 2, 0, -524273, 3, 0, -458737, 2, 0, -393206, 3, 0, -393205, 2, 0, -393204, 1, 0, -393203, 3, 0, -393202, 2, 0, -393201, 1, 0 )
 
 [node name="DmgMap" type="TileMap" parent="GameTileMap"]
 tile_set = ExtResource( 7 )
@@ -147,9 +172,6 @@ tile_set = ExtResource( 11 )
 cell_size = Vector2( 40, 40 )
 format = 1
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 143.469, -29.3162 )
-
 [node name="KinematicBody2D2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 843.823, -32.0917 )
 
@@ -159,35 +181,64 @@ position = Vector2( 702.242, -30.2039 )
 [node name="KinematicBody2D4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1062.8, -32.0917 )
 
+[node name="adminCamera" parent="." instance=ExtResource( 14 )]
+position = Vector2( 26.544, -401.303 )
+enableMovement = false
 
-[node name="adminCamera" parent="." instance=ExtResource( 6 )]
+[node name="stomper" parent="." instance=ExtResource( 6 )]
+position = Vector2( 201.49, -439.433 )
 
 [node name="Label-left" type="Label" parent="."]
 margin_left = 26.544
 margin_top = -401.303
 margin_right = 109.544
 margin_bottom = -387.303
+custom_fonts/font = SubResource( 8 )
 text = "A - move left"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label-right" type="Label" parent="."]
-margin_left = 192.196
+margin_left = 249.804
 margin_top = -400.45
-margin_right = 284.196
+margin_right = 394.804
 margin_bottom = -386.45
+custom_fonts/font = SubResource( 9 )
 text = "D - move right"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label-right2" type="Label" parent="."]
-margin_left = 333.773
-margin_top = -440.381
-margin_right = 425.773
-margin_bottom = -426.381
-text = "W - jump"
+[node name="Label-jump" type="Label" parent="."]
+margin_left = 410.019
+margin_top = -441.228
+margin_right = 502.019
+margin_bottom = -424.228
+custom_fonts/font = SubResource( 10 )
+text = "w - jump"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-drill" type="Label" parent="."]
+margin_left = 156.713
+margin_top = 84.8694
+margin_right = 248.713
+margin_bottom = 98.8694
+custom_fonts/font = SubResource( 7 )
+text = "S - drill down"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-drill2" type="Label" parent="."]
+margin_left = 345.634
+margin_top = 84.0222
+margin_right = 447.634
+margin_bottom = 101.022
+custom_fonts/font = SubResource( 6 )
+text = "S - drill down"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -196,3 +247,4 @@ __meta__ = {
 stream = ExtResource( 12 )
 autoplay = true
 
+[node name="menu" parent="." instance=ExtResource( 13 )]
