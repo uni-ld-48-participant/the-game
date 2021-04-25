@@ -1,41 +1,25 @@
 extends Node2D
 
 const cavernMinWidth = 1
-const cavernMaxWidth = 20
+const cavernMaxWidth = 10
 const cavernMinHeight = 1
 const cavernMaxHeight = 5
 const generationDepth = 100
-const screenWidth = 50
+const depth = 150
+const screenWidth = 30
 
 var rng_seed : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$GameTileMap.init_scene(screenWidth, generationDepth + 20, Global.Empty)
 	
-	$GameTileMap.set_tile(0, 0, Global.Empty)
-	$GameTileMap.set_tile(1, 0, Global.Dirt)
-	$GameTileMap.set_tile(2, 0, Global.Rock)
-	$GameTileMap.set_tile(3, 0, Global.Metal)
-	$GameTileMap.set_tile(4, 0, Global.Coal)
-	
-	for q in range(0,20):
-		$GameTileMap.set_tile(q, 3, Global.Dirt)
-		$GameTileMap.get_tile(q, 3).temperature = q
-	
-	for q in range(0,20):
-		$GameTileMap.set_tile(q, 5, Global.Dirt)
-		$GameTileMap.get_tile(q, 5).hp -= 5*q
-		
-	for q in range(0,20):
-		$GameTileMap.set_tile(q, 6, Global.Metal)
-		$GameTileMap.get_tile(q, 6).hp -= 25*q
+	$GameTileMap.init_scene(screenWidth, depth+1, Global.Empty)	
 
-	generateTiles(10, 10+generationDepth)
-	setDipper(0, 10, screenWidth, generationDepth, Global.Rock)
+	generateTiles(depth-generationDepth, depth)
+	setDipper(0, 0, screenWidth, depth, Global.Rock)
 	for q in range(0, screenWidth):
-		$GameTileMap.get_tile(q, 10).temperature = 0
-
+		$GameTileMap.get_tile(q, depth-generationDepth).temperature = 0		
+		
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
@@ -83,6 +67,7 @@ func setDipper(left, top, width, height, type):
 		$GameTileMap.set_tile(left+width-1, y, type)
 	for x in range(left, left+width):
 		$GameTileMap.set_tile(x, top+height, type)
+		$GameTileMap.set_tile(x, top, type)
 
 func placeMashrum(x, y):
 	var mushroom = load("res://Mushroom/Mushroom.tscn").instance()

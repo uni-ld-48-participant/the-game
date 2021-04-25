@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://resources/cell_tiles/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/cell_tiles/coal_prototype.png" type="Texture" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://resources/cell_tiles/metal_prototype.png" type="Texture" id=9]
 [ext_resource path="res://resources/cell_tiles/dirt_prototype.png" type="Texture" id=10]
 [ext_resource path="res://resources/ice_tiles/set.tres" type="TileSet" id=11]
+[ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Mushroom/Mushroom.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/Tuturial.gd" type="Script" id=14]
+[ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
@@ -124,6 +128,16 @@ points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
 } ]
 4/z_index = 0
 
+[sub_resource type="DynamicFont" id=6]
+size = 28
+font_data = ExtResource( 12 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 1017.95, 84.3444 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 241.72, 35.4169 )
+
 [node name="map" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -134,6 +148,10 @@ script = ExtResource( 5 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 40, 40 )
 format = 1
+tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 18, 2, 0, 19, 2, 0, 20, 2, 0, 21, 2, 0, 22, 2, 0, 23, 2, 0, 24, 2, 0, 25, 2, 0, 26, 2, 0, 65536, 2, 0, 65544, 2, 0, 65562, 2, 0, 131072, 2, 0, 131074, 2, 0, 131080, 2, 0, 131082, 2, 0, 131083, 2, 0, 131084, 2, 0, 131085, 2, 0, 131086, 2, 0, 131098, 2, 0, 196608, 2, 0, 196610, 2, 0, 196614, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196634, 2, 0, 262144, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 2, 0, 262151, 2, 0, 262152, 2, 0, 262153, 2, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 0, 262166, 1, 0, 262167, 1, 0, 262168, 1, 0, 262169, 2, 0, 262170, 2, 0, 327680, 2, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 2, 0, 327689, 2, 0, 327690, 2, 0, 327700, 1, 0, 327706, 2, 0, 393216, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393236, 1, 0, 393242, 2, 0, 458752, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458775, 2, 0, 458776, 2, 0, 458777, 2, 0, 458778, 2, 0, 524288, 2, 0, 524290, 2, 0, 524314, 2, 0, 589824, 2, 0, 589826, 2, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589850, 2, 0, 655360, 2, 0, 655362, 2, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655379, 1, 0, 655380, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0, 655386, 2, 0, 720896, 2, 0, 720898, 2, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 1, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720922, 2, 0, 786432, 2, 0, 786434, 2, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 1, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 1, 0, 786451, 1, 0, 786452, 1, 0, 786453, 1, 0, 786454, 1, 0, 786455, 1, 0, 786458, 2, 0, 851968, 2, 0, 851970, 2, 0, 851994, 2, 0, 917504, 2, 0, 917506, 2, 0, 917530, 2, 0, 983040, 1, 0, 983041, 1, 0, 983042, 1, 0, 983043, 1, 0, 983044, 1, 0, 983045, 1, 0, 983046, 1, 0, 983047, 1, 0, 983048, 1, 0, 983049, 1, 0, 983050, 1, 0, 983051, 1, 0, 983052, 1, 0, 983053, 1, 0, 983054, 1, 0, 983055, 1, 0, 983056, 1, 0, 983057, 1, 0, 983058, 1, 0, 983059, 1, 0, 983060, 1, 0, 983061, 1, 0, 983062, 1, 0, 983063, 1, 0, 983064, 1, 0, 983065, 1, 0, 983066, 1, 0, 983067, 1, 0, 983068, 1, 0, 983069, 1, 0, 983070, 1, 0, 983071, 1, 0, 983072, 1, 0, 983073, 1, 0, 983074, 1, 0, 983075, 1, 0, 983076, 1, 0, 983077, 1, 0, 983078, 1, 0, 983079, 1, 0 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="DmgMap" type="TileMap" parent="GameTileMap"]
 tile_set = ExtResource( 7 )
@@ -146,12 +164,172 @@ cell_size = Vector2( 40, 40 )
 format = 1
 
 [node name="KinematicBody2D2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 843.823, -32.0917 )
+position = Vector2( 1339.19, 61.8918 )
 
 [node name="KinematicBody2D3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 702.242, -30.2039 )
+position = Vector2( 1285.51, 65.367 )
 
 [node name="KinematicBody2D4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1062.8, -32.0917 )
+position = Vector2( 900.189, 255.902 )
 
 [node name="adminCamera" parent="." instance=ExtResource( 6 )]
+
+[node name="Tuturial" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="RigidBody2D" parent="Tuturial" instance=ExtResource( 13 )]
+position = Vector2( 533.59, 255.573 )
+
+[node name="Tips" type="Node2D" parent="Tuturial"]
+
+[node name="Label3" type="Label" parent="Tuturial/Tips"]
+margin_left = 60.1964
+margin_top = 41.2423
+margin_right = 336.196
+margin_bottom = 84.2423
+rect_pivot_offset = Vector2( 312.81, 166.446 )
+custom_fonts/font = SubResource( 6 )
+text = "Move with arrows"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tuturial/Tips"]
+margin_left = 586.508
+margin_top = 666.774
+margin_right = 944.508
+margin_bottom = 743.774
+custom_fonts/font = SubResource( 6 )
+text = "Good Luck!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Tuturial/Tips"]
+margin_left = -4.04487
+margin_top = -62.6387
+margin_right = 168.955
+margin_bottom = -5.63873
+rect_rotation = -90.0
+rect_pivot_offset = Vector2( 199.438, 153.139 )
+custom_fonts/font = SubResource( 6 )
+text = "<- highway "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Tuturial/Tips"]
+margin_left = 752.441
+margin_top = 63.0156
+margin_right = 1018.44
+margin_bottom = 106.016
+rect_pivot_offset = Vector2( 199.438, 153.139 )
+custom_fonts/font = SubResource( 6 )
+text = "Stomp the dirt"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Tuturial/Tips"]
+margin_left = 327.296
+margin_top = 125.528
+margin_right = 354.296
+margin_bottom = 156.528
+rect_rotation = -360.0
+rect_pivot_offset = Vector2( 27, 69.5995 )
+custom_fonts/font = SubResource( 6 )
+text = "->"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Tuturial/Tips"]
+margin_left = 860.242
+margin_top = 81.4305
+margin_right = 887.242
+margin_bottom = 112.431
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 27, 69.5995 )
+custom_fonts/font = SubResource( 6 )
+text = "->"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Tuturial/Tips"]
+margin_left = 846.383
+margin_top = 223.802
+margin_right = 873.383
+margin_bottom = 254.802
+rect_pivot_offset = Vector2( 27, 69.5995 )
+custom_fonts/font = SubResource( 6 )
+text = "<-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="Tuturial/Tips"]
+margin_left = 537.363
+margin_top = 550.171
+margin_right = 849.363
+margin_bottom = 593.171
+rect_pivot_offset = Vector2( 73.6368, 0 )
+custom_fonts/font = SubResource( 6 )
+text = "A little deeper to start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="Tuturial/Tips"]
+margin_left = 871.132
+margin_top = 198.25
+margin_right = 1183.13
+margin_bottom = 241.25
+rect_pivot_offset = Vector2( 199.438, 153.139 )
+custom_fonts/font = SubResource( 6 )
+text = "Meet wooper"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label10" type="Label" parent="Tuturial/Tips"]
+margin_left = 549.135
+margin_top = 203.007
+margin_right = 861.135
+margin_bottom = 246.007
+rect_pivot_offset = Vector2( 199.438, 153.139 )
+custom_fonts/font = SubResource( 6 )
+text = "They like shrooms"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label11" type="Label" parent="Tuturial/Tips"]
+margin_left = 482.196
+margin_top = 364.242
+margin_right = 758.196
+margin_bottom = 407.242
+rect_pivot_offset = Vector2( 312.81, 166.446 )
+custom_fonts/font = SubResource( 6 )
+text = "Protect them"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartArea" type="Area2D" parent="Tuturial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/StartArea"]
+position = Vector2( 846.715, 724.575 )
+shape = SubResource( 7 )
+
+[node name="ColdTestArea" type="Area2D" parent="Tuturial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/ColdTestArea"]
+position = Vector2( 581.343, 406.041 )
+shape = SubResource( 8 )
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 13 )]
+position = Vector2( 486.773, 252.633 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 15 )]
+position = Vector2( 175.104, 128.083 )
