@@ -7,7 +7,6 @@ export (int) var gravity = 4000
 
 var velocity = Vector2.ZERO
 var mushrooms: int = 5
-var mushroomInZone: RigidBody2D = null
 
 var stomping_delta: float = 0
 var stomping_direction: int = 0
