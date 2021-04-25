@@ -43,15 +43,6 @@ func _physics_process(delta):
 	
 	consume_mushroom(delta)
 	checkHealth(delta)
-	
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-			
-		if collision.collider is TileMap:
-			var tile_pos = collision.collider.world_to_map(position)
-			tile_pos -= collision.normal
-			var tile_id = collision.collider.get_cellv(tile_pos)
-			#print("I collided with ", tile_id)
 
 func idle_moving_x(delta):
 	if isFrozen:
@@ -134,7 +125,7 @@ func checkHealth(delta):
 			checkNearTiles(body.world_to_map(self.position), body)
 			
 func checkNearTiles(position: Vector2, tileMap: TileMap):
-	var tile = tileMap.get_tile(position.x, position.y + 1)
+	var tile = tileMap.get_parent().get_tile(position.x, position.y + 1)
 	print("Tile is ", tile)
 	if tile != null && tile.temperature < 8:
 		self.health -= 10

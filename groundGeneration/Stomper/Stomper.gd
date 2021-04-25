@@ -36,18 +36,17 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_down"):
 				if is_on_floor():
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x, tile_pos.y + 1))
+					stomp(collision.collider.get_parent().get_tile(tile_pos.x, tile_pos.y + 1))
 			if Input.is_action_just_pressed("ui_left"):
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x - 1, tile_pos.y))
+					stomp(collision.collider.get_parent().get_tile(tile_pos.x - 1, tile_pos.y))
 			if Input.is_action_just_pressed("ui_right"):
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider, collision.collider.get_tile(tile_pos.x + 1, tile_pos.y))
+					stomp(collision.collider.get_parent().get_tile(tile_pos.x + 1, tile_pos.y))
 
-func stomp(tileMap: TileMap, tile):
+func stomp(tile):
 	if velocity.x < speed/2 && tile != null:
 		tile.hp -= 25
-		tileMap.apply_tile(tile)
 		print("New tile is ", tile)
 
 func place_fire():
