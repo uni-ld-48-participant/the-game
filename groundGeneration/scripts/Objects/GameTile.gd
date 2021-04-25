@@ -65,10 +65,13 @@ func _render():
 	cell_map.set_cell(x, y, type.cell_type)
 	
 func _render_hp():
-	var percent_id = round(hp / (type.hp * 0.2))
-	dmg_map.set_cell(x, y, percent_id)
-	if show_hp:
-		label.text = "%d" % hp
+	if type != Global.Empty:
+		var percent_id = round(hp / (type.hp * 0.2))
+		dmg_map.set_cell(x, y, percent_id)
+		if show_hp:
+			label.text = "%d" % hp
+	elif show_hp:
+		label.text = ""
 
 func _render_temperature():
 	if type == Global.Empty || temperature > FREEZING_THRESHOLD:
