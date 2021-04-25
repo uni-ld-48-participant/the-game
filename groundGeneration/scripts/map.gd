@@ -42,8 +42,9 @@ func addTileType(firstLine, lastLine, type):
 		var height = int(rand_range(cavernMinHeight, type.generation_max_height - cavernMinHeight))
 		height = min(height, lastLine-currentDepth-type.vertcal_distance)
 		
-		var segmentWidth = screenWidth / type.horizontal_limit
-		for i in range(type.horizontal_limit):
+		var partsCount = int(rand_range(1, type.horizontal_limit))
+		var segmentWidth = screenWidth / partsCount
+		for i in range(partsCount):
 			# fill one area
 			var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
 			width = min(width, segmentWidth)

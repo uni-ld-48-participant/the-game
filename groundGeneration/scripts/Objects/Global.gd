@@ -10,8 +10,8 @@ var All:Array
 func _init():
 	Empty = TileType.new()
 	Empty.cell_type = 0
-	Empty.generation_max_width = 20
-	Empty.generation_max_height = 5
+	Empty.generation_max_width = 15
+	Empty.generation_max_height = 4
 	Empty.vertcal_distance = 0
 	
 	Dirt = TileType.new()
@@ -24,10 +24,10 @@ func _init():
 	Rock = TileType.new()
 	Rock.cell_type = 2
 	Rock.hp = 100000
-	Rock.generation_max_width = 15
+	Rock.generation_max_width = 12
 	Rock.generation_max_height = 2
 	Rock.vertcal_distance = 1
-	Rock.horizontal_limit = 2
+	Rock.horizontal_limit = 3
 
 	Metal = TileType.new()
 	Metal.cell_type = 3
