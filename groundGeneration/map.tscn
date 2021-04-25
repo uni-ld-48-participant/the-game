@@ -169,7 +169,7 @@ position = Vector2( 900.189, 255.902 )
 script = ExtResource( 14 )
 
 [node name="RigidBody2D" parent="Tuturial" instance=ExtResource( 13 )]
-position = Vector2( 533.59, 255.573 )
+position = Vector2( 646.983, 255.573 )
 
 [node name="Tips" type="Node2D" parent="Tuturial"]
 
@@ -284,13 +284,13 @@ __meta__ = {
 }
 
 [node name="Label10" type="Label" parent="Tuturial/Tips"]
-margin_left = 549.135
-margin_top = 203.007
-margin_right = 861.135
-margin_bottom = 246.007
+margin_left = 478.579
+margin_top = 204.267
+margin_right = 790.579
+margin_bottom = 247.267
 rect_pivot_offset = Vector2( 199.438, 153.139 )
 custom_fonts/font = SubResource( 6 )
-text = "They like shrooms"
+text = "Tasty mushrooms ( e )"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -302,7 +302,7 @@ margin_right = 758.196
 margin_bottom = 407.242
 rect_pivot_offset = Vector2( 312.81, 166.446 )
 custom_fonts/font = SubResource( 6 )
-text = "Protect them"
+text = "Protect them ( q )"
 __meta__ = {
 "_edit_use_anchors_": false
 }
