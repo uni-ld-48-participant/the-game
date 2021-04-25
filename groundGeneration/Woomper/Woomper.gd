@@ -28,7 +28,9 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	$AnimatedSprite.flip_h = velocity.x < 0
-	if velocity.x != 0 && velocity.y == 0:
+	if consume_delta < 1:
+		$AnimatedSprite.play("consume")
+	elif velocity.x != 0 && velocity.y == 0:
 		$AnimatedSprite.play("move")
 	else:
 		$AnimatedSprite.play("idle")
@@ -63,10 +65,12 @@ func idle_moving_x(delta):
 		return -speed
 
 func getNearestMushroom(myPosition: Vector2):
+	var bodies = $Area2D.get_overlapping_bodies()
+	
 	if !mushroomArray.empty():
 		var mushroom = mushroomArray[0]
 		for i in range(mushroomArray.size() - 1, -1, -1):
-			if mushroomArray[i] == null:
+			if mushroomArray[i] == null || abs(mushroomArray[i].position.y - myPosition.x) < 120:
 				mushroomArray.remove(i)
 			elif mushroom != null && (abs(mushroomArray[i].position.x - myPosition.x) <  abs(mushroom.position.x - myPosition.x)):
 				mushroom = mushroomArray[i]
