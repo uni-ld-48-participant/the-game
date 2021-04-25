@@ -9,16 +9,13 @@ const screenWidth = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TileMap.set_tile(0, 0, Global.Empty)
-	$TileMap.set_tile(1, 0, Global.Dirt)
-	$TileMap.set_tile(2, 0, Global.Rock)
-	$TileMap.set_tile(3, 0, Global.Metal)
-	$TileMap.set_tile(4, 0, Global.Coal)
-	$TileMap.set_tile(5, 0, Global.Ice)
+	$GameTileMap.init_scene(50, 120, Global.Empty)
 	
-	$TileMap.set_tile(10, 1, Global.Dirt)
-	$TileMap.set_tile(10, 2, Global.Ice)
-	$TileMap.set_tile(10, 3, Global.Dirt)
+	$GameTileMap.set_tile(0, 0, Global.Empty)
+	$GameTileMap.set_tile(1, 0, Global.Dirt)
+	$GameTileMap.set_tile(2, 0, Global.Rock)
+	$GameTileMap.set_tile(3, 0, Global.Metal)
+	$GameTileMap.set_tile(4, 0, Global.Coal)
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
@@ -28,11 +25,13 @@ func generateTiles(firstLine, lastLine):
 	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.Dirt)
 	
 	# resources fill
-	addTileType(firstLine, lastLine, Global.Ice)
 	addTileType(firstLine, lastLine, Global.Metal)
 	addTileType(firstLine, lastLine, Global.Rock)
 	addTileType(firstLine, lastLine, Global.Empty)
 	addTileType(firstLine, lastLine, Global.Coal)
+	
+	for q in range(0, screenWidth):
+		$GameTileMap.get_tile(q,firstLine).temperature = 0
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
@@ -48,7 +47,7 @@ func addTileType(firstLine, lastLine, type):
 func setSquare(left, top, width, height, type):
 	for y in range(top, top+height):
 		for x in range(left, left + width):
-				$TileMap.set_tile(x, y, type)
+				$GameTileMap.set_tile(x, y, type)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

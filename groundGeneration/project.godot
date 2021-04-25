@@ -10,11 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Object",
+"class": "GameTile",
+"language": "GDScript",
+"path": "res://scripts/Objects/GameTile.gd"
+}, {
+"base": "Node2D",
+"class": "GameTileMap",
+"language": "GDScript",
+"path": "res://scripts/GameTileMap.gd"
+}, {
+"base": "Object",
 "class": "TileType",
 "language": "GDScript",
 "path": "res://scripts/Objects/TileType.gd"
 } ]
 _global_script_class_icons={
+"GameTile": "",
+"GameTileMap": "",
 "TileType": ""
 }
 
