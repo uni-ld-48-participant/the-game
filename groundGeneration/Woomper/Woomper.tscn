@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Woomper/Woomper.gd" type="Script" id=1]
-[ext_resource path="res://Woomper/woomer_sketch_1_position.png" type="Texture" id=2]
-[ext_resource path="res://Woomper/woomer_sketch_3_position.png" type="Texture" id=3]
-[ext_resource path="res://Woomper/woomer_sketch_2_position.png" type="Texture" id=4]
+[ext_resource path="res://Woomper/blue/woomper_blue.png" type="Texture" id=2]
+[ext_resource path="res://Woomper/blue/blue_move/woomper_blue_1.png" type="Texture" id=3]
+[ext_resource path="res://Woomper/blue/blue_move/woomper_blue_2.png" type="Texture" id=4]
 [ext_resource path="res://sounds/woomp.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/wooper_mushroom.wav" type="AudioStream" id=6]
+[ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_2.png" type="Texture" id=7]
+[ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_3.png" type="Texture" id=8]
+[ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_4.png" type="Texture" id=9]
+[ext_resource path="res://Woomper/blue/blue_move/woomper_blue_4.png" type="Texture" id=10]
+[ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_1.png" type="Texture" id=11]
+[ext_resource path="res://Woomper/blue/blue_move/woomper_blue_3.png" type="Texture" id=12]
+[ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_5.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,10 +21,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "consume",
+"speed": 10.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
