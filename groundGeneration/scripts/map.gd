@@ -9,31 +9,30 @@ const screenWidth = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TileMap.set_tile(0, 0, Global.TileTypes.Empty)
-	$TileMap.set_tile(1, 0, Global.TileTypes.Dirt)
-	$TileMap.set_tile(2, 0, Global.TileTypes.Rock)
-	$TileMap.set_tile(3, 0, Global.TileTypes.Metal)
-	$TileMap.set_tile(4, 0, Global.TileTypes.Coal)
-	$TileMap.set_tile(5, 0, Global.TileTypes.Ice)
+	$TileMap.set_tile(0, 0, Global.Empty)
+	$TileMap.set_tile(1, 0, Global.Dirt)
+	$TileMap.set_tile(2, 0, Global.Rock)
+	$TileMap.set_tile(3, 0, Global.Metal)
+	$TileMap.set_tile(4, 0, Global.Coal)
+	$TileMap.set_tile(5, 0, Global.Ice)
 	
-	$TileMap.set_tile(10, 1, Global.TileTypes.Dirt)
-	$TileMap.set_tile(10, 2, Global.TileTypes.Ice)
-	$TileMap.set_tile(10, 3, Global.TileTypes.Dirt)
+	$TileMap.set_tile(10, 1, Global.Dirt)
+	$TileMap.set_tile(10, 2, Global.Ice)
+	$TileMap.set_tile(10, 3, Global.Dirt)
 	generateTiles(10, generationDepth)
 
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
 	# base fill
-	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.TileTypes.Dirt)
+	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.Dirt)
 	
 	# resources fill
-	addTileType(firstLine, lastLine, Global.TileTypes.Ice)
-	addTileType(firstLine, lastLine, Global.TileTypes.Metal)
-	addTileType(firstLine, lastLine, Global.TileTypes.Rock)
-	addTileType(firstLine, lastLine, Global.TileTypes.Empty)
-	addTileType(firstLine, lastLine, Global.TileTypes.Coal)
-
+	addTileType(firstLine, lastLine, Global.Ice)
+	addTileType(firstLine, lastLine, Global.Metal)
+	addTileType(firstLine, lastLine, Global.Rock)
+	addTileType(firstLine, lastLine, Global.Empty)
+	addTileType(firstLine, lastLine, Global.Coal)
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
