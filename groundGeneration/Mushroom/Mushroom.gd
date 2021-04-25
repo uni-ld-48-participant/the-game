@@ -1,6 +1,7 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 export var hitpoints = 100
+export (int) var gravity = 8000
 
 
 
@@ -12,6 +13,10 @@ func _process(delta):
 	$Label.text = str(hitpoints)
 	if hitpoints < 10:
 		queue_free()	
+
+func _physics_process(delta):
+	var velocity = Vector2(0, gravity)
+	move_and_slide(velocity, Vector2.UP)
 
 func consume():
 	hitpoints -= 10

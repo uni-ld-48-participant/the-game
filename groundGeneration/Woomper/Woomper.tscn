@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Woomper/Woomper.gd" type="Script" id=1]
 [ext_resource path="res://Woomper/woomer_sketch_1_position.png" type="Texture" id=2]
 [ext_resource path="res://Woomper/woomer_sketch_3_position.png" type="Texture" id=3]
 [ext_resource path="res://Woomper/woomer_sketch_2_position.png" type="Texture" id=4]
 [ext_resource path="res://sounds/woomp.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/wooper_mushroom.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -61,5 +62,7 @@ stream = ExtResource( 5 )
 [node name="Ouch" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Mushroom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = 5.0
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

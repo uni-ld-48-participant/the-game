@@ -9,6 +9,9 @@ var velocity = Vector2.ZERO
 var mushrooms: int = 5
 var mushroomInZone: RigidBody2D = null
 
+var stomping_delta: float = 0
+var stomping_direction: int = 0
+
 func _ready():
 	pass # Replace with function body.
 
@@ -27,8 +30,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if Input.is_action_just_pressed("ui_up"):
 		velocity.y = jump_speed
-	$AnimatedSprite.flip_h = velocity.x < 0
 	pick_up_mushroom()
+	var isStomp = false
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider is TileMap:
@@ -36,18 +39,51 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_down"):
 				if is_on_floor():
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider.get_parent().get_tile(tile_pos.x, tile_pos.y + 1))
+					stomping_direction = 0
+					isStomp = stomp(collision.collider.get_parent().get_tile(tile_pos.x, tile_pos.y + 1))
 			if Input.is_action_just_pressed("ui_left"):
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider.get_parent().get_tile(tile_pos.x - 1, tile_pos.y))
+					stomping_direction = 1
+					isStomp = stomp(collision.collider.get_parent().get_tile(tile_pos.x - 1, tile_pos.y))
 			if Input.is_action_just_pressed("ui_right"):
 					print("Trying stomp on: ", tile_pos)
-					stomp(collision.collider.get_parent().get_tile(tile_pos.x + 1, tile_pos.y))
+					stomping_direction = 2
+					isStomp = stomp(collision.collider.get_parent().get_tile(tile_pos.x + 1, tile_pos.y))
+	if stomping_delta < 1:
+		if stomping_direction == 0:
+			$AnimatedSprite.play("stomp_down")
+		elif stomping_direction == 1:
+			$AnimatedSprite.play("stomp_left")
+		elif stomping_direction == 2:
+			$AnimatedSprite.play("stomp_right")
+	elif velocity.y < -50:
+		$AnimatedSprite.play("jump")
+	elif velocity.x > 20:
+		$AnimatedSprite.play("move_right")
+	elif velocity.x < -20:
+		$AnimatedSprite.play("move_left")
+	else:
+		$AnimatedSprite.play("idle")
+		
+	check_stomping(delta)
 
 func stomp(tile):
-	if velocity.x < speed/2 && tile != null:
+	if abs(velocity.x) < 50 && tile != null:
 		tile.hp -= 25
-		print("New tile is ", tile)
+		stomping_delta = 0
+		return true
+	else:
+		return false
+
+func check_stomping(delta):
+	if stomping_delta < 1:
+		stomping_delta += delta
+		if !$StompSound.playing:
+			$StompSound.play()
+		return true
+	else:
+		$StompSound.stop()
+		return false
 
 func place_fire():
 	if Input.is_action_just_pressed("ui_campfire"):
