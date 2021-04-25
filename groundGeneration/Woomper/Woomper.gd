@@ -93,7 +93,7 @@ func getNearestCampfire(myPosition: Vector2):
 func consume_mushroom(delta):
 	consume_delta += delta
 	var mushroom = getNearestMushroom(self.position)
-	if mushroom != null && abs(mushroom.position.x - self.position.x) < 60 && consume_delta > 1 :
+	if mushroom != null && abs(mushroom.position.x - self.position.x) < 60 && abs(mushroom.position.y - self.position.y) < 30 && consume_delta > 1 :
 		consume_delta = 0
 		$Woomp.play()
 		mushroom.consume()
@@ -108,8 +108,9 @@ func _on_Area2D_area_entered(area):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("mushroom"):
 		print("I collided with mushroom")
+		$Mushroom.play()
 		if !mushroomArray.has(body):
-			mushroomArray.append(body as RigidBody2D)
+			mushroomArray.append(body as KinematicBody2D)
 			
 func checkHealth(delta):
 	if health_delta < 1:
