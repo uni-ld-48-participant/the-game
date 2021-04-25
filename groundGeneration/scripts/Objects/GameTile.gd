@@ -1,10 +1,10 @@
 extends Object
 class_name GameTile
-const FREEZING_THRESHOLD = 5
+const FREEZING_THRESHOLD = 10
 const CONDUCTIVITY = 3
 
-export var show_temps = true;
-export var show_hp = false;
+export var show_temps = false;
+export var show_hp = true;
 
 var x:int
 var y:int
@@ -65,7 +65,7 @@ func _render():
 	cell_map.set_cell(x, y, type.cell_type)
 	
 func _render_hp():
-	var percent_id = round((hp / type.hp) / 0.2)
+	var percent_id = round(hp / (type.hp * 0.2))
 	dmg_map.set_cell(x, y, percent_id)
 	if show_hp:
 		label.text = "%d" % hp
@@ -73,8 +73,10 @@ func _render_hp():
 func _render_temperature():
 	if type == Global.Empty || temperature > FREEZING_THRESHOLD:
 		ice_map.set_cell(x, y, -1)
+	elif temperature == 0:		
+		ice_map.set_cell(x, y, 0)
 	else:
-		var ice_id = 5 - round((FREEZING_THRESHOLD - temperature) / (FREEZING_THRESHOLD/5.0))
+		var ice_id = 5 - round((FREEZING_THRESHOLD - temperature) / (FREEZING_THRESHOLD/4.0))
 		ice_map.set_cell(x, y, ice_id)
 	if show_temps:
 		if type == Global.Empty:
@@ -92,7 +94,7 @@ func set_hp(new_hp: int):
 		return
 	hp = new_hp	
 	if hp <= 0:
-		type = Global.Empty
+		self.type = Global.Empty
 	_render_hp()
 	
 func set_temp(new_temp: int):
