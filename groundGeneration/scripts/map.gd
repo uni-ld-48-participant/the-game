@@ -26,6 +26,10 @@ func _ready():
 	for q in range(0,20):
 		$GameTileMap.set_tile(q, 5, Global.Dirt)
 		$GameTileMap.get_tile(q, 5).hp -= 5*q
+		
+	for q in range(0,20):
+		$GameTileMap.set_tile(q, 6, Global.Metal)
+		$GameTileMap.get_tile(q, 6).hp -= 25*q
 
 	generateTiles(10, 10+generationDepth)
 	setDipper(0, 10, screenWidth, generationDepth, Global.Rock)
@@ -35,7 +39,7 @@ func _ready():
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
-	rng_seed = 1
+	rng_seed = 6
 	seed(rng_seed)
 	#randomize()
 
@@ -45,26 +49,33 @@ func generateTiles(firstLine, lastLine):
 	# resources fill
 	addTileType(firstLine, lastLine, Global.Metal)
 	addTileType(firstLine, lastLine, Global.Rock)
-	addTileType(firstLine, lastLine, Global.Empty)
 	addTileType(firstLine, lastLine, Global.Coal)	
+	addTileType(firstLine, lastLine, Global.Empty)
+	
+	placeMashrum(100, -40)
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
 		var height = int(rand_range(cavernMinHeight, type.generation_max_height - cavernMinHeight))
-		var cavernStart = int(rand_range(0, screenWidth - width - 1))
-		
 		height = min(height, lastLine-currentDepth-type.vertcal_distance)
 		
-		# fill one area
-		setSquare(cavernStart, currentDepth, width, height, type)
+		var segmentWidth = screenWidth / type.horizontal_limit
+		for i in range(type.horizontal_limit):
+			# fill one area
+			var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
+			width = min(width, segmentWidth)
+			var cavernStart = i*segmentWidth + int(rand_range(0, segmentWidth - width))
+			setSquare(cavernStart, currentDepth, width, height, type)
+			
 		currentDepth = currentDepth + height + type.vertcal_distance
 
 func setSquare(left, top, width, height, type):
 	for y in range(top, top+height):
 		for x in range(left, left + width):
 				$GameTileMap.set_tile(x, y, type)
+	if type == Global.Empty :
+		placeMashrum((left+width/2)*40, (top+height/2)*40)
 
 func setDipper(left, top, width, height, type):
 	for y in range(top, top+height):
@@ -73,6 +84,10 @@ func setDipper(left, top, width, height, type):
 	for x in range(left, left+width):
 		$GameTileMap.set_tile(x, top+height, type)
 
+func placeMashrum(x, y):
+	var mushroom = load("res://Mushroom/Mushroom.tscn").instance()
+	add_child(mushroom)
+	mushroom.global_position = Vector2(x, y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

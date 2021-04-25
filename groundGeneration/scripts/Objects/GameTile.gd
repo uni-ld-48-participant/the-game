@@ -1,10 +1,11 @@
 extends Object
 class_name GameTile
 const FREEZING_THRESHOLD = 10
-const CONDUCTIVITY = 3
+const CONDUCTIVITY = 3.0
+const CONDUCTIVITY_THREASHHOLD = 0.5
 
-export var show_temps = false;
-export var show_hp = true;
+export var show_temps = true;
+export var show_hp = false;
 
 var x:int
 var y:int
@@ -12,7 +13,7 @@ var type: TileType setget set_type
 var temperature:int setget set_temp
 var hp:int setget set_hp
 
-var _temp_delta: int = 0
+var _temp_delta: float = 0
 var label:Label
 var cell_map: TileMap
 var ice_map: TileMap
@@ -42,17 +43,22 @@ func exchange_temperature(tile):
 	if(tile == null || tile.type == Global.Empty || type == Global.Empty):
 		return
 
-	var delta = (temperature - tile.temperature) / 2
-	if(delta == 0):
-		return	
+	var delta = (temperature - tile.temperature) / 4.0
 
-	if delta < -CONDUCTIVITY:
-		delta = -CONDUCTIVITY
-	elif delta > CONDUCTIVITY:
+	if delta > CONDUCTIVITY:
 		delta = CONDUCTIVITY
-
+	elif delta < -CONDUCTIVITY:
+		delta = -CONDUCTIVITY
+	
 	self._temp_delta -= delta		
 	tile._temp_delta += delta
+	
+func process_temerature():
+	if abs(_temp_delta) < CONDUCTIVITY_THREASHHOLD:
+		return		
+		
+	self.temperature = floor(self.temperature + _temp_delta)
+	_temp_delta = 0
 
 func _reset_stats():
 	temperature = type.temperature
@@ -65,13 +71,15 @@ func _render():
 	cell_map.set_cell(x, y, type.cell_type)
 	
 func _render_hp():
-	if type != Global.Empty:
-		var percent_id = round(hp / (type.hp * 0.2))
+	if type == Global.Empty:
+		dmg_map.set_cell(x, y, -1)
+		if show_hp:
+			label.text = ""
+	else:		
+		var percent_id = 4 - floor(hp / (type.hp * 0.2))
 		dmg_map.set_cell(x, y, percent_id)
 		if show_hp:
 			label.text = "%d" % hp
-	elif show_hp:
-		label.text = ""
 
 func _render_temperature():
 	if type == Global.Empty || temperature > FREEZING_THRESHOLD:
@@ -86,11 +94,6 @@ func _render_temperature():
 			label.text = ""
 		else:
 			label.text = "%d" % temperature
-
-func process_temerature():
-	if _temp_delta != 0:
-		self.temperature += _temp_delta
-		_temp_delta = 0
 
 func set_hp(new_hp: int):
 	if hp == new_hp:

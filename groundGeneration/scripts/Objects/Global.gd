@@ -22,9 +22,10 @@ func _init():
 	Rock = TileType.new()
 	Rock.cell_type = 2
 	Rock.hp = 100000
-	Rock.generation_max_width = 8
-	Rock.generation_max_height = 4
+	Rock.generation_max_width = 15
+	Rock.generation_max_height = 2
 	Rock.vertcal_distance = 1
+	Rock.horizontal_limit = 2
 
 	Metal = TileType.new()
 	Metal.cell_type = 3
@@ -36,7 +37,6 @@ func _init():
 	Coal = TileType.new()
 	Coal.cell_type = 4
 	Coal.hp = 500
-	Coal.temperature = 30
-	Coal.generation_max_width = 3
-	Coal.generation_max_height = 4
+	Coal.generation_max_width = 5
+	Coal.generation_max_height = 5
 	Coal.vertcal_distance = 2
