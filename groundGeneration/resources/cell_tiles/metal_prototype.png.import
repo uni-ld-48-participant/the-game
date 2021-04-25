@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shade.png-635bc225fe828c39061b035e65c094b7.stex"
+path="res://.import/metal_prototype.png-f280cade1669860da8e6617380000640.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shade.png"
-dest_files=[ "res://.import/Shade.png-635bc225fe828c39061b035e65c094b7.stex" ]
+source_file="res://resources/cell_tiles/metal_prototype.png"
+dest_files=[ "res://.import/metal_prototype.png-f280cade1669860da8e6617380000640.stex" ]
 
 [params]
 
