@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Object",
+"class": "TileType",
+"language": "GDScript",
+"path": "res://scripts/Objects/TileType.gd"
+} ]
+_global_script_class_icons={
+"TileType": ""
+}
+
 [application]
 
 config/name="Ground Generation"
@@ -18,7 +28,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
+Global="*res://scripts/Objects/Global.gd"
 
 [display]
 

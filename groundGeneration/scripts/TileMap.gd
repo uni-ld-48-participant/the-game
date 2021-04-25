@@ -11,7 +11,7 @@ func get_tile(x: int, y: int):
 	return tile_data[x][y] if tile_data.has(x) && tile_data[x].has(y) else null
 
 
-func set_tile(x: int, y: int, type):
+func set_tile(x: int, y: int, type:TileType):
 	if !tile_data.has(x):
 		tile_data[x] = {}
 	
@@ -27,21 +27,21 @@ func set_tile(x: int, y: int, type):
 		y = y,
 		type = type, 
 		temperature = type.temperature,
-		hp = type.durability,
+		hp = type.hp,
 		label = label
-	}	
+	}
 	apply_tile(tile_data[x][y])	
 
 func apply_tile(tile):
 	if tile.hp <= 0:
-		tile.type = Global.TileTypes.Empty
+		tile.type = Global.Empty
 		
 	if show_temps:
 		tile.label.text = "%.1f" % tile.temperature
 	elif show_hp:
 		tile.label.text = "%d" % tile.hp
 		
-	var isFrost = tile.temperature <= 0 && tile.type != Global.TileTypes.Empty
+	var isFrost = tile.temperature <= 0 && tile.type != Global.Empty
 	$ShadeMap.set_cell(tile.x, tile.y, 0 if isFrost else 1)
 	self.set_cell(tile.x, tile.y, tile.type.cell_type)
 
