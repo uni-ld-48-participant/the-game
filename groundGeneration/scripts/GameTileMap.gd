@@ -1,7 +1,7 @@
 extends Node2D
 class_name GameTileMap
 
-const TEMPERATURE_PROCESS_INTERVAL = 0.5
+const TEMPERATURE_PROCESS_INTERVAL = 2
 	
 var tiles = []
 
@@ -43,5 +43,5 @@ var _time_since_last_process = 0
 func _physics_process(delta):
 	_time_since_last_process += delta
 	if _time_since_last_process >= TEMPERATURE_PROCESS_INTERVAL:
-		#_process_temperature()
+		_process_temperature()
 		_time_since_last_process = 0
