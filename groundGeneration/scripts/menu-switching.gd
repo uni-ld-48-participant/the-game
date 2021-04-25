@@ -41,3 +41,9 @@ func _on_ButtonStart_pressed():
 	$"Button-Pause".show()
 	$background.hide()
 	get_tree().paused = false
+
+
+func _on_ButtonPause2_pressed():
+	$"Control-Menu".show()
+	$"Button-Pause".hide()
+	get_tree().paused = true
