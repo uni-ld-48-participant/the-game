@@ -24,8 +24,8 @@ func generateTiles(firstLine, lastLine):
 	# generate map here
 
 	rng_seed = 6
-	seed(rng_seed)
-	#randomize()
+	#seed(rng_seed)
+	randomize()
 
 	# base fill
 	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.Dirt)
