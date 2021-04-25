@@ -11,7 +11,7 @@ var rng_seed : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$GameTileMap.init_scene(50, 120, Global.Empty)
+	$GameTileMap.init_scene(screenWidth, generationDepth + 20, Global.Empty)
 	
 	$GameTileMap.set_tile(0, 0, Global.Empty)
 	$GameTileMap.set_tile(1, 0, Global.Dirt)
@@ -21,6 +21,8 @@ func _ready():
 
 	generateTiles(10, 10+generationDepth)
 	setDipper(0, 10, screenWidth, generationDepth, Global.Rock)
+	for q in range(0, screenWidth):
+		$GameTileMap.get_tile(q, 10).temperature = 0
 
 func generateTiles(firstLine, lastLine):
 	# generate map here
@@ -36,10 +38,7 @@ func generateTiles(firstLine, lastLine):
 	addTileType(firstLine, lastLine, Global.Metal)
 	addTileType(firstLine, lastLine, Global.Rock)
 	addTileType(firstLine, lastLine, Global.Empty)
-	addTileType(firstLine, lastLine, Global.Coal)
-	
-	for q in range(0, screenWidth):
-		$GameTileMap.get_tile(q, firstLine).temperature = 0
+	addTileType(firstLine, lastLine, Global.Coal)	
 
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
@@ -61,10 +60,10 @@ func setSquare(left, top, width, height, type):
 
 func setDipper(left, top, width, height, type):
 	for y in range(top, top+height):
-		$TileMap.set_tile(left, y, type)
-		$TileMap.set_tile(left+width-1, y, type)
+		$GameTileMap.set_tile(left, y, type)
+		$GameTileMap.set_tile(left+width-1, y, type)
 	for x in range(left, left+width):
-		$TileMap.set_tile(x, top+height, type)
+		$GameTileMap.set_tile(x, top+height, type)
 
 
 

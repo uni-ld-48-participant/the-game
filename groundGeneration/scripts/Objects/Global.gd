@@ -4,7 +4,6 @@ var Empty : TileType
 var Rock : TileType
 var Metal : TileType
 var Coal : TileType
-var Ice : TileType
 
 func _init():
 	Empty = TileType.new()
