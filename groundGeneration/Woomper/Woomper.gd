@@ -9,6 +9,9 @@ export (String) var nick = "Woomper"
 var idleStep = 0
 var stepDelta = 0
 var consume_delta = 0
+var health_delta = 0
+var health = 100
+var isFrozen = false
 
 var mushroomArray = []
 var campFireArray = []
@@ -39,6 +42,7 @@ func _physics_process(delta):
 	stepDelta += delta
 	
 	consume_mushroom(delta)
+	checkHealth(delta)
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
@@ -50,6 +54,8 @@ func _physics_process(delta):
 			#print("I collided with ", tile_id)
 
 func idle_moving_x(delta):
+	if isFrozen:
+		return 0
 	var goal_position = -1
 	var mushroom = getNearestMushroom(self.position)
 	var campfire = getNearestCampfire(self.position)
@@ -68,13 +74,13 @@ func idle_moving_x(delta):
 func getNearestMushroom(myPosition: Vector2):
 	if !mushroomArray.empty():
 		var mushroom = mushroomArray[0]
-		for item in mushroomArray:
-			if item == null:
-				mushroomArray.erase(item)
-			elif mushroom != null && abs(item.position.x - myPosition.x) <  abs(mushroom.position.x - myPosition.x):
-				mushroom = item
-			else:
-				mushroom = item
+		for i in range(mushroomArray.size() - 1, -1, -1):
+			if mushroomArray[i] == null:
+				mushroomArray.remove(i)
+			elif mushroom != null && (abs(mushroomArray[i].position.x - myPosition.x) <  abs(mushroom.position.x - myPosition.x)):
+				mushroom = mushroomArray[i]
+			elif mushroom == null && mushroomArray[i] != null:
+				mushroom = mushroomArray[i]
 		return mushroom
 	else:
 		return null
@@ -82,9 +88,13 @@ func getNearestMushroom(myPosition: Vector2):
 func getNearestCampfire(myPosition: Vector2):
 	if !campFireArray.empty():
 		var campfire = campFireArray[0]
-		for item in campFireArray:
-			if abs(item.position.x - myPosition.x) <  abs(campfire.position.x - myPosition.x):
-				campfire = item
+		for i in range(campFireArray.size() - 1, -1, -1):
+			if campFireArray[i] == null:
+				campFireArray.remove(i)
+			elif campfire != null && (abs(campFireArray[i].position.x - myPosition.x) <  abs(campfire.position.x - myPosition.x)):
+				campfire = campFireArray[i]
+			elif campfire == null && campFireArray[i] != null:
+				campfire = campFireArray[i]
 		return campfire
 	else:
 		return null
@@ -106,6 +116,29 @@ func _on_Area2D_area_entered(area):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("mushroom"):
-		print("I collided with campfire")
+		print("I collided with mushroom")
 		if !mushroomArray.has(body):
 			mushroomArray.append(body as RigidBody2D)
+			
+func checkHealth(delta):
+	if health_delta < 1:
+		health_delta += delta
+		return
+	$Label.text = nick + " " + str(health)
+	health_delta = 0
+	if health < 10:
+		frozen()
+	var bodies = $Area2D.get_overlapping_bodies()
+	for body in bodies:
+		if body is TileMap:
+			checkNearTiles(body.world_to_map(self.position), body)
+			
+func checkNearTiles(position: Vector2, tileMap: TileMap):
+	var tile = tileMap.get_tile(position.x, position.y + 1)
+	print("Tile is ", tile)
+	if tile != null && tile.temperature < 2:
+		self.health -= 10
+		$Ouch.play()
+		
+func frozen():
+	isFrozen = true
