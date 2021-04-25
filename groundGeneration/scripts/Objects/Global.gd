@@ -29,7 +29,7 @@ func _init():
 
 	Rock = TileType.new()
 	Rock.cell_type = 2
-	Rock.hp = 0
+	Rock.hp = 100000
 	Rock.conductivity = 3
 	Rock.temperature = 10
 	Rock.static = false

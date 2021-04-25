@@ -7,6 +7,9 @@ const cavernMaxHeight = 5
 const generationDepth = 100
 const screenWidth = 50
 
+var rng = RandomNumberGenerator.new()
+var rng_seed : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TileMap.set_tile(0, 0, Global.Empty)
@@ -24,6 +27,9 @@ func _ready():
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
+	rng_seed = 1
+	#rng.randomize()
+
 	# base fill
 	setSquare(0, firstLine, screenWidth, lastLine - firstLine, Global.Dirt)
 	
@@ -37,9 +43,9 @@ func generateTiles(firstLine, lastLine):
 func addTileType(firstLine, lastLine, type):
 	var currentDepth = firstLine
 	while currentDepth < lastLine:
-		var width = (randi() % (type.generation_max_width - cavernMinWidth) + cavernMinWidth)
-		var height = (randi() % (type.generation_max_height - cavernMinHeight) + cavernMinHeight)
-		var cavernStart = (randi() % (screenWidth - width - 1))
+		var width = int(rand_range(cavernMinWidth, type.generation_max_width - cavernMinWidth))
+		var height = int(rand_range(cavernMinHeight, type.generation_max_height - cavernMinHeight))
+		var cavernStart = int(rand_range(0, screenWidth - width - 1))
 		
 		# fill one area
 		setSquare(cavernStart, currentDepth, width, height, type)
