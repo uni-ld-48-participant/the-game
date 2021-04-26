@@ -26,5 +26,5 @@ func _on_KinematicBody2D_mushrooms_signal(count):
 
 
 func _on_Timer_timeout():
-	score += 5
+	score += 1
 	$Score.text = "Score: " + str(score)

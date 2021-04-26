@@ -12,7 +12,7 @@ func _init():
 	Empty.cell_type = 0
 	Empty.generation_max_width = 15
 	Empty.generation_max_height = 4
-	Empty.vertcal_distance = 0
+	Empty.vertcal_distance = 1
 	
 	Dirt = TileType.new()
 	Dirt.cell_type = 1
