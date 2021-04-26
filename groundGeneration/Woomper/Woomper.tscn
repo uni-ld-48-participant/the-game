@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Woomper/Woomper.gd" type="Script" id=1]
 [ext_resource path="res://Woomper/blue/woomper_blue.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_1.png" type="Texture" id=11]
 [ext_resource path="res://Woomper/blue/blue_move/woomper_blue_3.png" type="Texture" id=12]
 [ext_resource path="res://Woomper/blue/blue_eating_mushroom/woomper_blue_mush_5.png" type="Texture" id=13]
+[ext_resource path="res://Woomper/blue/blue_frozen/woomper_blue_frozen.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -30,6 +31,11 @@ animations = [ {
 "loop": true,
 "name": "consume",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "frozen",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -45,7 +51,7 @@ script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "idle"
+animation = "frozen"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.44545, 0 )

@@ -4,7 +4,7 @@ export (int) var speed = 200
 export (int) var jump_speed = -800
 export (int) var gravity = 4000
 
-export var mushrooms: int = 100
+export var mushrooms: int = 50
 export var campfires: int = 50
 
 signal mushrooms_signal(count)
@@ -74,6 +74,9 @@ func _physics_process(delta):
 
 func stomp(tile):
 	if abs(velocity.x) < 50 && tile != null:
+		if tile.hp < 30 && tile.type.cell_type == 4:
+			campfires += 1
+			emit_signal("campfire_signal", campfires)
 		tile.hp -= 25
 		stomping_delta = 0
 		return true
@@ -91,7 +94,7 @@ func check_stomping(delta):
 		return false
 
 func place_fire():
-	if Input.is_action_just_pressed("ui_campfire") && is_on_floor():
+	if Input.is_action_just_pressed("ui_campfire") && campfires > 0 && is_on_floor():
 		campfires -= 1
 		emit_signal("campfire_signal", campfires)
 		print("It's a campfire")

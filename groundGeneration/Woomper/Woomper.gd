@@ -29,7 +29,9 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	$AnimatedSprite.flip_h = velocity.x < 0
-	if consume_delta < 1:
+	if isFrozen:
+		$AnimatedSprite.play("frozen")
+	elif consume_delta < 1:
 		$AnimatedSprite.play("consume")
 	elif velocity.x != 0 && velocity.y == 0:
 		$AnimatedSprite.play("move")
@@ -122,10 +124,13 @@ func checkHealth(delta):
 	if health_delta < 1:
 		health_delta += delta
 		return
-	$Label.text = nick + " " + str(health)
+	
 	health_delta = 0
 	if health < 10:
+		$Label.text = nick + " " + "is frozen"
 		frozen()
+	else:
+		$Label.text = nick + " " + str(health)
 	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:
 		if body is TileMap:
