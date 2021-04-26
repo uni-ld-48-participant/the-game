@@ -4,7 +4,7 @@ export (int) var speed = 200
 export (int) var jump_speed = -400
 export (int) var gravity = 4000
 
-export var mushrooms: int = 50
+export var mushrooms: int = 10
 export var campfires: int = 50
 
 signal mushrooms_signal(count)
