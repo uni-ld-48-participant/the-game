@@ -38,7 +38,7 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.play("idle")
 	
-	if velocity.x == 0 && velocity.y == 0 && stepDelta > 0.5:
+	if velocity.x == 0 && velocity.y == 0 && stepDelta > 1:
 		stepDelta = 0
 		if idleStep > steps/2:
 			idleStep = 0
