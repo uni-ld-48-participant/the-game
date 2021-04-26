@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-export (int) var jump_speed = -800
+export (int) var jump_speed = -400
 export (int) var gravity = 4000
 
 export var mushrooms: int = 50
@@ -15,6 +15,8 @@ var velocity = Vector2.ZERO
 
 var stomping_delta: float = 0
 var stomping_direction: int = 0
+
+var flying_delta: float = 0
 
 func _ready():
 	emit_signal("campfire_signal", campfires)
@@ -33,8 +35,11 @@ func _physics_process(delta):
 	get_input()
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up") && flying_delta < 2:
 		velocity.y = jump_speed
+		flying_delta += delta
+	elif is_on_floor():
+		flying_delta = 0
 	pick_up_mushroom()
 	var isStomp = false
 	for i in get_slide_count():
