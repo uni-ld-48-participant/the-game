@@ -4,8 +4,8 @@ const cavernMinWidth = 1
 const cavernMaxWidth = 10
 const cavernMinHeight = 1
 const cavernMaxHeight = 5
-const generationDepth = 100
-const depth = 150
+const generationDepth = 150
+const depth = 200
 const screenWidth = 30
 
 var rng_seed : int
