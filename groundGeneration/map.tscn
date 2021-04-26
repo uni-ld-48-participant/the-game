@@ -401,7 +401,7 @@ shape = SubResource( 7 )
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea1"]
-position = Vector2( 871.942, 129.977 )
+position = Vector2( 521.942, 124.977 )
 shape = SubResource( 8 )
 
 [node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea1"]
@@ -411,7 +411,7 @@ stream = ExtResource( 17 )
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea2"]
-position = Vector2( 519.249, 262.993 )
+position = Vector2( 574.249, 224.993 )
 shape = SubResource( 8 )
 
 [node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea2"]
@@ -431,7 +431,7 @@ stream = ExtResource( 21 )
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea4"]
-position = Vector2( 569.532, 653.472 )
+position = Vector2( 589.532, 662.472 )
 shape = SubResource( 8 )
 
 [node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea4"]
@@ -441,7 +441,7 @@ stream = ExtResource( 22 )
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea5"]
-position = Vector2( 588.355, 820.761 )
+position = Vector2( 579.355, 934.761 )
 shape = SubResource( 8 )
 
 [node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea5"]
