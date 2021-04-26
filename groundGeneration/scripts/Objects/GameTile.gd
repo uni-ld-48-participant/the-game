@@ -1,7 +1,7 @@
 extends Object
 class_name GameTile
 const FREEZING_THRESHOLD = 10
-const CONDUCTIVITY = 3.0
+const CONDUCTIVITY = 3.5
 const CONDUCTIVITY_THREASHHOLD = 0.5
 
 export var show_temps = false;

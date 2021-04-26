@@ -1,7 +1,7 @@
 extends Node2D
 class_name GameTileMap
 
-const TEMPERATURE_PROCESS_INTERVAL = 1
+const TEMPERATURE_PROCESS_INTERVAL = 0.75
 	
 var tiles = []
 

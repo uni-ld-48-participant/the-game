@@ -20,8 +20,6 @@ func _ready():
 
 	generateTiles(depth-generationDepth, depth)
 	setDipper(0, 0, screenWidth, depth, Global.Rock)
-	for q in range(0, screenWidth):
-		$GameTileMap.get_tile(q, depth-generationDepth).temperature = 0		
 		
 func generateTiles(firstLine, lastLine):
 	# generate map here
