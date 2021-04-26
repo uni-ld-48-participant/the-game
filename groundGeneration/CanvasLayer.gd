@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var score = 0
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -22,3 +23,8 @@ func _on_KinematicBody2D_campfire_signal(count):
 
 func _on_KinematicBody2D_mushrooms_signal(count):
 	$Mushrooms.text = "Mushrooms: " + str(count)
+
+
+func _on_Timer_timeout():
+	score += 5
+	$Score.text = "Score: " + str(score)

@@ -351,6 +351,22 @@ text = "Campfires"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+margin_left = 42.2147
+margin_top = 30.2438
+margin_right = 112.215
+margin_bottom = 59.2438
+custom_fonts/font = ExtResource( 12 )
+text = "Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 5.0
+autostart = true
 [connection signal="body_entered" from="Tuturial/ColdTestArea" to="Tuturial" method="_on_ColdTestArea_body_entered"]
 [connection signal="campfire_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_campfire_signal"]
 [connection signal="mushrooms_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_mushrooms_signal"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer" method="_on_Timer_timeout"]
