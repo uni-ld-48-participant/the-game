@@ -36,14 +36,14 @@ __meta__ = {
 
 [node name="Button-Pause" type="TextureButton" parent="Menu"]
 pause_mode = 2
-anchor_left = 0.891
+anchor_left = 0.939
 anchor_top = 0.037
 anchor_right = 0.971
-anchor_bottom = 0.179
-margin_left = 76.4269
+anchor_bottom = 0.114
+margin_left = -0.373291
 margin_top = -17.6394
 margin_right = 76.4269
-margin_bottom = -17.4394
+margin_bottom = 41.0606
 rect_scale = Vector2( 0.68, 0.68 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 5 )
