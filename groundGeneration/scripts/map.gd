@@ -61,7 +61,7 @@ func setSquare(left, top, width, height, type):
 		for x in range(left, left + width):
 				$GameTileMap.set_tile(x, y, type)
 	if type == Global.Empty :
-		placeMashrum((left+width/2)*40, (top+height/2-3)*40)
+		placeMashrum((left+width/2)*40, (top+height/2-6)*40)
 
 func setDipper(left, top, width, height, type):
 	for y in range(top, top+height):
