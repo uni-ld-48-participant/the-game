@@ -45,7 +45,7 @@ func exchange_temperature(tile):
 
 	var delta
 	if tile.type == Global.Empty || type == Global.Empty:
-		delta = (temperature - tile.temperature) / 6.5
+		delta = (temperature - tile.temperature) / 6
 	else:
 		delta = (temperature - tile.temperature) / 4.0
 
