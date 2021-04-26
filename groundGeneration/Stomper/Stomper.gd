@@ -59,6 +59,10 @@ func _physics_process(delta):
 					print("Trying stomp on: ", tile_pos)
 					stomping_direction = 2
 					isStomp = stomp(collision.collider.get_parent().get_tile(tile_pos.x + 1, tile_pos.y))
+			if Input.is_action_just_pressed("ui_up"):
+					print("Trying stomp on: ", tile_pos)
+					stomping_direction = 3
+					isStomp = stomp(collision.collider.get_parent().get_tile(tile_pos.x, tile_pos.y - 1))
 	if stomping_delta < 1:
 		if stomping_direction == 0:
 			$AnimatedSprite.play("stomp_down")
@@ -66,6 +70,8 @@ func _physics_process(delta):
 			$AnimatedSprite.play("stomp_left")
 		elif stomping_direction == 2:
 			$AnimatedSprite.play("stomp_right")
+		elif stomping_direction == 3:
+			$AnimatedSprite.play("stomp_down")
 	elif velocity.y < -50:
 		$AnimatedSprite.play("jump")
 	elif velocity.x > 20:
