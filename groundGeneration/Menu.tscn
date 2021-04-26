@@ -112,6 +112,7 @@ margin_top = -17.6394
 margin_right = 76.4269
 margin_bottom = 41.0606
 rect_scale = Vector2( 0.68, 0.68 )
+focus_mode = 0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 5 )
 stretch_mode = 5
