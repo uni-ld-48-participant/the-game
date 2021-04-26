@@ -4,7 +4,7 @@ export (int) var speed = 60
 export (int) var jump_speed = -200
 export (int) var gravity = 4000
 export (int) var steps = 300
-export (String) var nick = "Woomper"
+export (String) var nick = ""
 
 var idleStep = 0
 var stepDelta = 0
@@ -105,7 +105,7 @@ func getNearestCampfire(myPosition: Vector2):
 func consume_mushroom(delta):
 	consume_delta += delta
 	var mushroom = getNearestMushroom(self.position)
-	if is_instance_valid(mushroom) && abs(mushroom.position.x - self.position.x) < 60 && abs(mushroom.position.y - self.position.y) < 30 && consume_delta > 1 :
+	if is_instance_valid(mushroom) && abs(mushroom.position.x - self.position.x) < 60 && abs(mushroom.position.y - self.position.y) < 50 && consume_delta > 1 :
 		consume_delta = 0
 		$Woomp.play()
 		mushroom.consume()
