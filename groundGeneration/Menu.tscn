@@ -1,33 +1,29 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scripts/menu-switching.gd" type="Script" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://resources/menu/pause.png" type="Texture" id=2]
 [ext_resource path="res://map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://resources/menu/pause-pressed.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 38
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 33
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Node" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
 
 [node name="map" parent="." instance=ExtResource( 3 )]
 pause_mode = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-pause_mode = 2
-script = ExtResource( 1 )
-pathToMap = NodePath("../map")
+[node name="Menu" type="CanvasLayer" parent="."]
 
-[node name="background" type="PanelContainer" parent="CanvasLayer"]
-self_modulate = Color( 0.290196, 0.8, 0.878431, 1 )
+[node name="background" type="PanelContainer" parent="Menu"]
+visible = false
+self_modulate = Color( 0.290196, 0.8, 0.878431, 0.784314 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -21.0
@@ -38,15 +34,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button-Pause" type="TextureButton" parent="CanvasLayer"]
+[node name="Button-Pause" type="TextureButton" parent="Menu"]
+pause_mode = 2
 anchor_left = 0.891
 anchor_top = 0.037
 anchor_right = 0.971
 anchor_bottom = 0.179
-margin_left = 0.399902
-margin_top = -0.299999
-margin_right = 0.399902
-margin_bottom = -0.100006
+margin_left = 76.4269
+margin_top = -17.6394
+margin_right = 76.4269
+margin_bottom = -17.4394
 rect_scale = Vector2( 0.68, 0.68 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 5 )
@@ -55,55 +52,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control-Menu" type="Control" parent="CanvasLayer"]
+[node name="Control-Menu" type="Control" parent="Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control-About" type="Control" parent="CanvasLayer/Control-Menu"]
+[node name="Control-About" type="Control" parent="Menu/Control-Menu"]
 anchor_left = -0.000880318
 anchor_right = 0.99912
 anchor_bottom = 1.0
-margin_top = -0.863068
-margin_bottom = -0.863037
+margin_left = -2.66968
+margin_top = -4.86762
+margin_right = -2.66968
+margin_bottom = -4.86755
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button-Close" type="Button" parent="CanvasLayer/Control-Menu/Control-About"]
-anchor_left = 0.089
-anchor_top = 0.123
-anchor_right = 0.217
-anchor_bottom = 0.237
-margin_left = -0.241623
-margin_top = -0.32061
-margin_right = -0.041626
-margin_bottom = 0.0793762
+[node name="Label-About" type="Label" parent="Menu/Control-Menu/Control-About"]
+margin_left = 470.733
+margin_top = 239.643
+margin_right = 1022.73
+margin_bottom = 495.643
 custom_fonts/font = SubResource( 1 )
-text = "Close"
+text = "Controls:
+  wasd / arrows move and dig
+	  space to pickup mushroom
+	  e to place mushroom
+	  q to palce fire"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control-Menu/Control-About"]
-anchor_left = 0.5
-anchor_top = 0.139
-anchor_right = 0.5
-anchor_bottom = 0.956
-margin_left = -144.631
-margin_top = -2.91702
-margin_right = 333.369
-margin_bottom = -3.21704
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label-About" type="Label" parent="CanvasLayer/Control-Menu/Control-About/ScrollContainer"]
-margin_right = 391.0
-margin_bottom = 256.0
-custom_fonts/font = SubResource( 2 )
+[node name="Label-About" type="Label" parent="Menu/Control-Menu"]
+margin_left = 1056.15
+margin_top = 224.534
+margin_right = 1447.15
+margin_bottom = 480.534
+custom_fonts/font = SubResource( 1 )
 text = " Design: 
    Anna Romanko 
  Programming: 
@@ -115,45 +104,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control-Main" type="Control" parent="CanvasLayer/Control-Menu"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button-Start" type="Button" parent="CanvasLayer/Control-Menu/Control-Main"]
-anchor_left = 0.454
-anchor_top = 0.232
-anchor_right = 0.582
-anchor_bottom = 0.346
-margin_left = -0.400024
-margin_top = 1.41704
-margin_right = -0.200012
-margin_bottom = 0.817017
-custom_fonts/font = SubResource( 1 )
-text = "Play"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button-About" type="Button" parent="CanvasLayer/Control-Menu/Control-Main"]
-anchor_left = 0.457
-anchor_top = 0.438
-anchor_right = 0.585
-anchor_bottom = 0.552
-margin_left = -0.200012
-margin_top = -1.41705
-margin_right = -6.10352e-05
-margin_bottom = -1.01709
-custom_fonts/font = SubResource( 1 )
-text = "About"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="CanvasLayer/Button-Pause" to="CanvasLayer" method="_on_ButtonPause2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control-Menu/Control-About/Button-Close" to="CanvasLayer" method="_on_ButtonClose_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control-Menu/Control-Main/Button-Start" to="CanvasLayer" method="_on_ButtonStart_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control-Menu/Control-Main/Button-About" to="CanvasLayer" method="_on_ButtonAbout_pressed"]
+[connection signal="pressed" from="Menu/Button-Pause" to="." method="_on_ButtonPause_pressed"]
