@@ -20,7 +20,8 @@ func _ready():
 
 	generateTiles(depth-generationDepth, depth)
 	setDipper(0, 0, screenWidth, depth, Global.Rock)
-		
+	setSquare(8, depth-generationDepth, 10, 2, Global.Empty)
+
 func generateTiles(firstLine, lastLine):
 	# generate map here
 
