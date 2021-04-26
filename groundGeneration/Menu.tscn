@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://resources/menu/pause.png" type="Texture" id=2]
 [ext_resource path="res://map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://resources/menu/pause-pressed.png" type="Texture" id=5]
+[ext_resource path="res://resources/menu/undo.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 33
@@ -48,9 +49,9 @@ anchor_left = -0.000880318
 anchor_right = 0.99912
 anchor_bottom = 1.0
 margin_left = -2.66968
-margin_top = -4.86762
+margin_top = -3.28022
 margin_right = -2.66968
-margin_bottom = -4.86755
+margin_bottom = -3.28015
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -90,12 +91,25 @@ __meta__ = {
 }
 
 [node name="Label-About2" type="Label" parent="Menu/Control-Menu"]
-margin_left = 1329.58
+margin_left = 1444.67
 margin_top = 41.5561
-margin_right = 1442.58
+margin_right = 1557.67
 margin_bottom = 89.5561
+rect_pivot_offset = Vector2( 75.2684, 24 )
 custom_fonts/font = SubResource( 1 )
 text = "Esc ->"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label-About3" type="Label" parent="Menu/Control-Menu"]
+margin_left = 1392.28
+margin_top = 157.436
+margin_right = 1557.28
+margin_bottom = 205.436
+custom_fonts/font = SubResource( 1 )
+text = "Restart ->"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -120,4 +134,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button-Restart" type="TextureButton" parent="Menu"]
+pause_mode = 2
+visible = false
+anchor_left = 0.939
+anchor_top = 0.037
+anchor_right = 0.971
+anchor_bottom = 0.114
+margin_left = -0.050293
+margin_top = 88.4277
+margin_right = 76.7498
+margin_bottom = 147.128
+rect_scale = Vector2( 0.68, 0.68 )
+texture_normal = ExtResource( 6 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Menu/Button-Pause" to="." method="_on_ButtonPause_pressed"]
+[connection signal="pressed" from="Menu/Button-Restart" to="." method="_on_ButtonRestart_pressed"]
