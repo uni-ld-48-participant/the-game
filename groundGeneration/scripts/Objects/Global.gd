@@ -34,7 +34,8 @@ func _init():
 	Metal.hp = 500
 	Metal.generation_max_width = 12
 	Metal.generation_max_height = 2
-	Metal.vertcal_distance = 5
+	Metal.vertcal_distance = 3
+	Metal.horizontal_limit = 3
 
 	Coal = TileType.new()
 	Coal.cell_type = 4
