@@ -496,7 +496,6 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
-wait_time = 5.0
 autostart = true
 
 [node name="RigidBody2D2" parent="." instance=ExtResource( 13 )]
