@@ -67,7 +67,7 @@ func setDipper(left, top, width, height, type):
 		$GameTileMap.set_tile(left, y, type)
 		$GameTileMap.set_tile(left+width-1, y, type)
 	for x in range(left, left+width):
-		$GameTileMap.set_tile(x, top+height, type)
+		#$GameTileMap.set_tile(x, top+height, type)
 		$GameTileMap.set_tile(x, top, type)
 
 func placeMashrum(x, y):
