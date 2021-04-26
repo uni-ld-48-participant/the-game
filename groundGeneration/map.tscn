@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://resources/cell_tiles/empty_prototype.png" type="Texture" id=1]
 [ext_resource path="res://resources/cell_tiles/coal_prototype.png" type="Texture" id=2]
@@ -16,6 +16,12 @@
 [ext_resource path="res://scripts/Tuturial.gd" type="Script" id=14]
 [ext_resource path="res://Stomper/Stomper.tscn" type="PackedScene" id=15]
 [ext_resource path="res://CanvasLayer.gd" type="Script" id=16]
+[ext_resource path="res://Tutorial/voice1.ogg" type="AudioStream" id=17]
+[ext_resource path="res://IntroArea.gd" type="Script" id=18]
+[ext_resource path="res://Tutorial/voice2.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Tutorial/voice5.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Tutorial/voice3.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Tutorial/voice4.ogg" type="AudioStream" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
@@ -134,6 +140,9 @@ extents = Vector2( 1017.95, 84.3444 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 600.803, 35.4169 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 268.58, 23.4645 )
 
 [node name="map" type="Node2D"]
 script = ExtResource( 3 )
@@ -388,6 +397,56 @@ shape = SubResource( 6 )
 position = Vector2( 599.181, 417.933 )
 shape = SubResource( 7 )
 
+[node name="IntroArea1" type="Area2D" parent="Tuturial"]
+script = ExtResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea1"]
+position = Vector2( 871.942, 129.977 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea1"]
+stream = ExtResource( 17 )
+
+[node name="IntroArea2" type="Area2D" parent="Tuturial"]
+script = ExtResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea2"]
+position = Vector2( 519.249, 262.993 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea2"]
+stream = ExtResource( 19 )
+
+[node name="IntroArea3" type="Area2D" parent="Tuturial"]
+script = ExtResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea3"]
+position = Vector2( 579.448, 414.867 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea3"]
+stream = ExtResource( 21 )
+
+[node name="IntroArea4" type="Area2D" parent="Tuturial"]
+script = ExtResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea4"]
+position = Vector2( 569.532, 653.472 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea4"]
+stream = ExtResource( 22 )
+
+[node name="IntroArea5" type="Area2D" parent="Tuturial"]
+script = ExtResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea5"]
+position = Vector2( 588.355, 820.761 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="Tuturial/IntroArea5"]
+stream = ExtResource( 20 )
+
 [node name="RigidBody2D" parent="." instance=ExtResource( 13 )]
 position = Vector2( 512.528, 257.245 )
 
@@ -451,6 +510,11 @@ position = Vector2( 941.409, 379.043 )
 
 [connection signal="body_entered" from="Tuturial/StartArea" to="Tuturial" method="_on_StartArea_body_entered"]
 [connection signal="body_entered" from="Tuturial/ColdTestArea" to="Tuturial" method="_on_ColdTestArea_body_entered"]
+[connection signal="body_entered" from="Tuturial/IntroArea1" to="Tuturial/IntroArea1" method="_on_IntroArea1_body_entered"]
+[connection signal="body_entered" from="Tuturial/IntroArea2" to="Tuturial/IntroArea2" method="_on_IntroArea1_body_entered"]
+[connection signal="body_entered" from="Tuturial/IntroArea3" to="Tuturial/IntroArea3" method="_on_IntroArea1_body_entered"]
+[connection signal="body_entered" from="Tuturial/IntroArea4" to="Tuturial/IntroArea4" method="_on_IntroArea1_body_entered"]
+[connection signal="body_entered" from="Tuturial/IntroArea5" to="Tuturial/IntroArea5" method="_on_IntroArea1_body_entered"]
 [connection signal="campfire_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_campfire_signal"]
 [connection signal="mushrooms_signal" from="KinematicBody2D" to="CanvasLayer" method="_on_KinematicBody2D_mushrooms_signal"]
 [connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer" method="_on_Timer_timeout"]

@@ -22,11 +22,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "move",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "consume",
@@ -35,6 +30,11 @@ animations = [ {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "frozen",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "move",
 "speed": 5.0
 } ]
 
@@ -82,5 +82,6 @@ stream = ExtResource( 5 )
 [node name="Mushroom" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 volume_db = 5.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

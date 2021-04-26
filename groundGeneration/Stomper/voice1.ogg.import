@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/voice1.ogg-bdbe9330bef7d8e14043305715b9359a.oggstr"
+
+[deps]
+
+source_file="res://Stomper/voice1.ogg"
+dest_files=[ "res://.import/voice1.ogg-bdbe9330bef7d8e14043305715b9359a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

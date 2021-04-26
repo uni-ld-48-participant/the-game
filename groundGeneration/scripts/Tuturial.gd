@@ -1,6 +1,7 @@
 extends Node2D
 
 var map: GameTileMap
+var active_intro = null
 
 func _ready():
 	map = get_parent().get_node("GameTileMap") as GameTileMap
