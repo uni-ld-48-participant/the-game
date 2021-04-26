@@ -26,5 +26,12 @@ func _on_KinematicBody2D_mushrooms_signal(count):
 
 
 func _on_Timer_timeout():
-	score += 1
+	#calculate alive wompers
+	var count = 0
+	for body in get_parent().get_children():
+		if body.is_in_group("mushroom"):
+			if not body.isFrozen:
+				count+=1
+			
+	score += count
 	$Score.text = "Score: " + str(score)
