@@ -77,12 +77,3 @@ func placeMashrum(x, y):
 	
 func restart():
 	get_tree().reload_current_scene()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_IntroArea1_body_entered(body):
-	pass # Replace with function body.
