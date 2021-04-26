@@ -40,10 +40,14 @@ func clear():
 	self.free()
 
 func exchange_temperature(tile):
-	if(tile == null || tile.type == Global.Empty || type == Global.Empty):
+	if(tile == null):# || tile.type == Global.Empty || type == Global.Empty):
 		return
 
-	var delta = (temperature - tile.temperature) / 4.0
+	var delta
+	if tile.type == Global.Empty || type == Global.Empty:
+		delta = (temperature - tile.temperature) / 6.5
+	else:
+		delta = (temperature - tile.temperature) / 4.0
 
 	if delta > CONDUCTIVITY:
 		delta = CONDUCTIVITY
@@ -90,10 +94,7 @@ func _render_temperature():
 		var ice_id = 5 - round((FREEZING_THRESHOLD - temperature) / (FREEZING_THRESHOLD/4.0))
 		ice_map.set_cell(x, y, ice_id)
 	if show_temps:
-		if type == Global.Empty:
-			label.text = ""
-		else:
-			label.text = "%d" % temperature
+		label.text = "%d" % temperature
 
 func set_hp(new_hp: int):
 	if hp == new_hp:
@@ -104,7 +105,9 @@ func set_hp(new_hp: int):
 	_render_hp()
 	
 func set_temp(new_temp: int):
-	if temperature == 0 || temperature == new_temp:
+	if temperature == new_temp:
+		return
+	if temperature == 0 && type != Global.Empty:
 		return
 	temperature = max(new_temp, 0)
 	_render_temperature()
