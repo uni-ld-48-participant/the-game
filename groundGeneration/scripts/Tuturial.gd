@@ -30,5 +30,6 @@ func _on_StartArea_body_entered(body):
 		for q in range(0,5):
 			var scene = load("res://Woomper/Woomper.tscn")
 			var woomper = scene.instance()
+			woomper.set_color(q)
 			woomper.position = Vector2(300 + 150 * q, 800 - 20*q)
 			get_parent().add_child(woomper)

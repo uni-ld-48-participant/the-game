@@ -19,24 +19,26 @@ var campfire: Area2D = null
 
 
 var velocity = Vector2.ZERO
+var sprite = null
 
 func _ready():
 	$Label.text = nick
+	sprite = $AnimatedSprite
 
 		
 func _physics_process(delta):
 	velocity.x = idle_moving_x(delta)
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-	$AnimatedSprite.flip_h = velocity.x < 0
+	sprite.flip_h = velocity.x < 0
 	if isFrozen:
-		$AnimatedSprite.play("frozen")
+		sprite.play("frozen")
 	elif consume_delta < 1:
-		$AnimatedSprite.play("consume")
+		sprite.play("consume")
 	elif velocity.x != 0 && velocity.y == 0:
-		$AnimatedSprite.play("move")
+		sprite.play("move")
 	else:
-		$AnimatedSprite.play("idle")
+		sprite.play("idle")
 	
 	if velocity.x == 0 && velocity.y == 0 && stepDelta > 1:
 		stepDelta = 0
@@ -145,3 +147,21 @@ func checkNearTiles(position: Vector2, tileMap: TileMap):
 		
 func frozen():
 	isFrozen = true
+	
+func set_color(color):
+	var local_color = color % 6
+	var alt_tex = load("res://Woomper/Woomper_blue_tres")
+	
+	if local_color == 0:
+		alt_tex = load("res://Woomper/Woomper_blue.tres")
+	elif local_color == 1:
+		alt_tex = load("res://Woomper/Woomper_green.tres")
+	elif local_color == 2:
+		alt_tex = load("res://Woomper/Woomper_orange.tres")
+	elif local_color == 3:
+		alt_tex = load("res://Woomper/Woomper_pink.tres")
+	elif local_color == 4:
+		alt_tex = load("res://Woomper/Woomper_purple.tres")
+	elif local_color == 5:
+		alt_tex = load("res://Woomper/Woomper_yellow.tres")
+	$AnimatedSprite.frames = alt_tex
