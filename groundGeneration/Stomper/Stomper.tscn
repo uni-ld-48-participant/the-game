@@ -48,6 +48,16 @@ animations = [ {
 "name": "move_left",
 "speed": 8.0
 }, {
+"frames": [ ExtResource( 31 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ), ExtResource( 34 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "stomp_left",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "jump",
@@ -62,16 +72,6 @@ animations = [ {
 "loop": true,
 "name": "stomp_down",
 "speed": 20.0
-}, {
-"frames": [ ExtResource( 31 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 32 ) ],
-"loop": true,
-"name": "move_right",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 30 ), ExtResource( 34 ), ExtResource( 33 ) ],
-"loop": true,
-"name": "stomp_left",
-"speed": 15.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -94,8 +94,9 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = -300
-limit_right = 1500
+limit_left = 0
+limit_top = 0
+limit_right = 1200
 limit_smoothed = true
 smoothing_enabled = true
 

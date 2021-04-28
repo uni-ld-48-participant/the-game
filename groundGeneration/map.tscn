@@ -465,10 +465,10 @@ autoplay = true
 script = ExtResource( 16 )
 
 [node name="Mushrooms" type="Label" parent="CanvasLayer"]
-margin_left = 39.83
-margin_top = 130.519
-margin_right = 181.83
-margin_bottom = 159.519
+margin_left = 887.331
+margin_top = 571.815
+margin_right = 1029.33
+margin_bottom = 600.815
 custom_fonts/font = ExtResource( 12 )
 text = "Mushrooms"
 __meta__ = {
@@ -476,10 +476,10 @@ __meta__ = {
 }
 
 [node name="Campfires" type="Label" parent="CanvasLayer"]
-margin_left = 41.5601
-margin_top = 89.5975
-margin_right = 183.56
-margin_bottom = 118.598
+margin_left = 886.229
+margin_top = 538.787
+margin_right = 1028.23
+margin_bottom = 567.788
 custom_fonts/font = ExtResource( 12 )
 text = "Campfires"
 __meta__ = {
@@ -487,10 +487,10 @@ __meta__ = {
 }
 
 [node name="Score" type="Label" parent="CanvasLayer"]
-margin_left = 42.2147
-margin_top = 5.2438
-margin_right = 112.215
-margin_bottom = 34.2438
+margin_left = 554.602
+margin_top = 572.33
+margin_right = 624.602
+margin_bottom = 601.33
 custom_fonts/font = ExtResource( 12 )
 text = "Score"
 __meta__ = {
@@ -564,7 +564,6 @@ fire_time = 200000
 [node name="Area2D7" parent="Finish" instance=ExtResource( 23 )]
 position = Vector2( 1044.14, 8140.81 )
 fire_time = 200000
-
 [connection signal="body_entered" from="Tuturial/StartArea" to="Tuturial" method="_on_StartArea_body_entered"]
 [connection signal="body_entered" from="Tuturial/ColdTestArea" to="Tuturial" method="_on_ColdTestArea_body_entered"]
 [connection signal="body_entered" from="Tuturial/IntroArea1" to="Tuturial/IntroArea1" method="_on_IntroArea1_body_entered"]

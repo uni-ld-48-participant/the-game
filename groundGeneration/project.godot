@@ -44,12 +44,18 @@ Global="*res://scripts/Objects/Global.gd"
 
 [display]
 
-window/size/width=1600
-window/size/height=900
+window/size/width=1200
+window/size/height=675
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [global]
 
 width=false
+
+[gui]
+
+theme/use_hidpi=true
 
 [input]
 

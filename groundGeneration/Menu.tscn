@@ -57,10 +57,10 @@ __meta__ = {
 }
 
 [node name="Label-About" type="Label" parent="Menu/Control-Menu/Control-About"]
-margin_left = 469.235
-margin_top = 239.643
-margin_right = 1021.23
-margin_bottom = 495.643
+margin_left = 13.7496
+margin_top = 125.772
+margin_right = 565.745
+margin_bottom = 381.772
 custom_fonts/font = SubResource( 1 )
 text = "Controls:
   wasd / arrows move and dig
@@ -72,10 +72,10 @@ __meta__ = {
 }
 
 [node name="Label-About" type="Label" parent="Menu/Control-Menu"]
-margin_left = 1056.15
-margin_top = 223.036
-margin_right = 1447.15
-margin_bottom = 479.036
+margin_left = 596.17
+margin_top = 116.656
+margin_right = 987.17
+margin_bottom = 446.656
 custom_fonts/font = SubResource( 1 )
 text = " Design: 
    Anna Romanko 
@@ -91,10 +91,10 @@ __meta__ = {
 }
 
 [node name="Label-About2" type="Label" parent="Menu/Control-Menu"]
-margin_left = 1444.67
-margin_top = 41.5561
-margin_right = 1557.67
-margin_bottom = 89.5561
+margin_left = 968.208
+margin_top = 32.5663
+margin_right = 1081.21
+margin_bottom = 80.5663
 rect_pivot_offset = Vector2( 75.2684, 24 )
 custom_fonts/font = SubResource( 1 )
 text = "Esc ->"
@@ -104,10 +104,10 @@ __meta__ = {
 }
 
 [node name="Label-About3" type="Label" parent="Menu/Control-Menu"]
-margin_left = 1392.28
-margin_top = 157.436
-margin_right = 1557.28
-margin_bottom = 205.436
+margin_left = 917.317
+margin_top = 136.46
+margin_right = 1082.32
+margin_bottom = 184.46
 custom_fonts/font = SubResource( 1 )
 text = "Restart ->"
 align = 2
@@ -121,10 +121,10 @@ anchor_left = 0.939
 anchor_top = 0.037
 anchor_right = 0.971
 anchor_bottom = 0.114
-margin_left = -0.373291
+margin_left = -21.3497
 margin_top = -17.6394
-margin_right = 76.4269
-margin_bottom = 41.0606
+margin_right = 68.2502
+margin_bottom = 58.3856
 rect_scale = Vector2( 0.68, 0.68 )
 focus_mode = 0
 texture_normal = ExtResource( 2 )
@@ -141,10 +141,10 @@ anchor_left = 0.939
 anchor_top = 0.037
 anchor_right = 0.971
 anchor_bottom = 0.114
-margin_left = -0.050293
-margin_top = 88.4277
-margin_right = 76.7498
-margin_bottom = 147.128
+margin_left = -21.0269
+margin_top = 86.9294
+margin_right = 68.5731
+margin_bottom = 162.954
 rect_scale = Vector2( 0.68, 0.68 )
 texture_normal = ExtResource( 6 )
 stretch_mode = 4
