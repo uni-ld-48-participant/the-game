@@ -168,7 +168,7 @@ tile_set = ExtResource( 11 )
 cell_size = Vector2( 40, 40 )
 format = 1
 
-[node name="KinematicBody2D4" parent="." instance=ExtResource( 4 )]
+[node name="Woomper" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1009.15, 249.767 )
 
 [node name="Tuturial" type="Node2D" parent="."]

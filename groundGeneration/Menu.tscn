@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://resources/menu/pause.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://fonts/homespun.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://resources/menu/pause-pressed.png" type="Texture" id=5]
 [ext_resource path="res://resources/menu/undo.png" type="Texture" id=6]
+[ext_resource path="res://resources/menu/control.png" type="Texture" id=7]
+[ext_resource path="res://resources/menu/control_pressed.png" type="Texture" id=8]
+[ext_resource path="res://Mushroom/mushroom_1_position.png" type="Texture" id=9]
+[ext_resource path="res://Campfire/fire_1_position.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 33
@@ -151,5 +155,91 @@ stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MobileControls" type="Node2D" parent="Menu"]
+
+[node name="UpButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 101.0
+margin_top = 430.0
+margin_right = 341.0
+margin_bottom = 670.0
+rect_scale = Vector2( 0.3, 0.3 )
+action_mode = 0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 171.0
+margin_top = 670.0
+margin_right = 411.0
+margin_bottom = 910.0
+rect_rotation = 180.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 11.0
+margin_top = 585.0
+margin_right = 251.0
+margin_bottom = 825.0
+rect_rotation = 270.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 259.807
+margin_top = 513.0
+margin_right = 499.807
+margin_bottom = 753.0
+rect_rotation = 90.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MushroomButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 1110.25
+margin_top = 573.851
+margin_right = 1150.25
+margin_bottom = 613.851
+rect_scale = Vector2( 2, 2 )
+texture_normal = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CampfireButton" type="TextureButton" parent="Menu/MobileControls"]
+margin_left = 1107.25
+margin_top = 456.983
+margin_right = 1147.25
+margin_bottom = 496.983
+rect_scale = Vector2( 2, 2 )
+texture_normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Menu/Button-Pause" to="." method="_on_ButtonPause_pressed"]
 [connection signal="pressed" from="Menu/Button-Restart" to="." method="_on_ButtonRestart_pressed"]
+[connection signal="button_down" from="Menu/MobileControls/UpButton" to="." method="_on_UpButton_button_down"]
+[connection signal="button_up" from="Menu/MobileControls/UpButton" to="." method="_on_UpButton_button_up"]
+[connection signal="button_down" from="Menu/MobileControls/DownButton" to="." method="_on_DownButton_button_down"]
+[connection signal="button_up" from="Menu/MobileControls/DownButton" to="." method="_on_DownButton_button_up"]
+[connection signal="button_down" from="Menu/MobileControls/LeftButton" to="." method="_on_LeftButton_button_down"]
+[connection signal="button_up" from="Menu/MobileControls/LeftButton" to="." method="_on_LeftButton_button_up"]
+[connection signal="button_down" from="Menu/MobileControls/RightButton" to="." method="_on_RightButton_button_down"]
+[connection signal="button_up" from="Menu/MobileControls/RightButton" to="." method="_on_RightButton_button_up"]
+[connection signal="pressed" from="Menu/MobileControls/MushroomButton" to="." method="_on_MushroomButton_pressed"]
+[connection signal="pressed" from="Menu/MobileControls/CampfireButton" to="." method="_on_CampfireButton_pressed"]
