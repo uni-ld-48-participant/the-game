@@ -388,18 +388,21 @@ __meta__ = {
 }
 
 [node name="StartArea" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/StartArea"]
 position = Vector2( 690.356, 1029.36 )
 shape = SubResource( 6 )
 
 [node name="ColdTestArea" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/ColdTestArea"]
 position = Vector2( 599.181, 417.933 )
 shape = SubResource( 7 )
 
 [node name="IntroArea1" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea1"]
@@ -410,6 +413,7 @@ shape = SubResource( 8 )
 stream = ExtResource( 17 )
 
 [node name="IntroArea2" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea2"]
@@ -420,6 +424,7 @@ shape = SubResource( 8 )
 stream = ExtResource( 19 )
 
 [node name="IntroArea3" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea3"]
@@ -430,6 +435,7 @@ shape = SubResource( 8 )
 stream = ExtResource( 21 )
 
 [node name="IntroArea4" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea4"]
@@ -440,6 +446,7 @@ shape = SubResource( 8 )
 stream = ExtResource( 22 )
 
 [node name="IntroArea5" type="Area2D" parent="Tuturial"]
+collision_mask = 3
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuturial/IntroArea5"]
